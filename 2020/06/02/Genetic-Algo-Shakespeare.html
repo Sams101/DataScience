@@ -1,0 +1,330 @@
+<h1 id="million-monkey-generator">Million Monkey Generator</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="c1"># 1 Read in file 
+</span>
+<span class="n">filename</span><span class="o">=</span> <span class="s">'sonnet15.txt'</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">ss</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    
+<span class="c1"># number of characters in SS
+</span><span class="n">ss_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h1 id="psuedo-code">Psuedo-code</h1>
+
+<p>1: Read in shakespeare sonnet file as string</p>
+
+<p>2: Generate n strings of same length to SS string</p>
+
+<p>3: Measure difference between SS and each string
+    - Diff is number of differences per string and SS</p>
+
+<p>4: Rank Strings by lowest diff</p>
+
+<p>5: Remove 50% highest diff</p>
+
+<p>6: Select 2 of each string</p>
+
+<p>7: split them at random index</p>
+
+<p>8: Join split strings and repeat for all children</p>
+
+<p>9: randoming change a value in each string</p>
+
+<p>10: compute diff between SS and new strings</p>
+
+<p>11: repeat process</p>
+
+<p>12: graph process</p>
+
+<p>13: visualise best string</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Generate n number of of child random strings with length SS
+</span><span class="k">def</span> <span class="nf">seed_population</span><span class="p">(</span><span class="n">pop_count</span><span class="p">):</span>
+    <span class="n">seed_population</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">text_combo</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">whitespace</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pop_count</span><span class="p">):</span>
+        <span class="n">child</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">text_combo</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ss_length</span><span class="p">))</span>
+        <span class="n">seed_population</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+    <span class="n">seed_population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">seed_population</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seed_population</span>
+
+
+<span class="c1"># Calculate similiarity between each child and ss
+</span><span class="k">def</span> <span class="nf">child_score</span><span class="p">(</span><span class="n">child</span><span class="p">):</span>
+    <span class="n">child_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ss_length</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">child</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">==</span> <span class="n">ss</span><span class="p">[</span><span class="n">char</span><span class="p">]:</span>
+            <span class="n">child_score</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">child_score</span>
+         
+<span class="c1"># Create score list for all individuals in the population
+</span><span class="k">def</span> <span class="nf">population_score</span><span class="p">(</span><span class="n">seed_pop</span><span class="p">):</span>
+    <span class="n">pop_score</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pop_count</span><span class="p">):</span>
+        <span class="n">child</span> <span class="o">=</span> <span class="n">seed_pop</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">child_score</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">pop_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pop_score</span>
+    
+    
+<span class="k">def</span> <span class="nf">fit_population</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">pop_score</span><span class="p">):</span>
+    <span class="c1"># Filter population with values above mean
+</span>    <span class="n">pop_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pop_score</span><span class="p">)</span> <span class="c1"># convert pop_score to numpy array
+</span>    <span class="n">pop_score_mean</span> <span class="o">=</span> <span class="n">pop_score</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># Calc mean value
+</span>    <span class="n">above_mean_filter</span> <span class="o">=</span> <span class="n">pop_score</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">pop_score_mean</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Create boolean array based on filter above mean values
+</span>    <span class="n">fit_population</span> <span class="o">=</span> <span class="n">population</span><span class="p">[</span><span class="n">above_mean_filter</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">fit_population</span>
+
+
+<span class="c1"># Mutate some genes in child chromosomes
+</span><span class="k">def</span> <span class="nf">mutate_child_chromosomes</span><span class="p">(</span><span class="n">chromosome_child</span><span class="p">,</span> <span class="n">mutation_factor</span><span class="p">):</span>
+    <span class="n">rand_list_test</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mutation_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome_child</span><span class="p">)</span> <span class="o">*</span> <span class="n">mutation_factor</span><span class="p">)</span> <span class="c1"># typical mutation_factor = 0.07
+</span>    <span class="n">text_combo</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">whitespace</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mutation_count</span><span class="p">):</span>
+        <span class="n">rand_gene</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ss_length</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1"># index a random gene in the chromosome
+</span>        <span class="n">mutated_gene</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">text_combo</span><span class="p">)</span>    <span class="c1"># Generate random gene
+</span>
+        <span class="c1"># Temp convert str -&gt; list -&gt;  str
+</span>        <span class="n">chromosome_child_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chromosome_child</span><span class="p">)</span>
+        <span class="n">chromosome_child_list</span><span class="p">[</span><span class="n">rand_gene</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutated_gene</span>
+        <span class="n">mutated_chromosome_child</span>  <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chromosome_child_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mutated_chromosome_child</span>
+
+        
+<span class="c1"># function to create new population from parents
+</span><span class="k">def</span> <span class="nf">generate_new_population</span><span class="p">(</span><span class="n">fit_population</span><span class="p">,</span> <span class="n">mutation_factor</span><span class="p">):</span>
+    <span class="n">new_population</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fit_pop_size</span> <span class="o">=</span> <span class="n">fit_population</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> 
+    <span class="n">parent_len</span> <span class="o">=</span> <span class="n">ss_length</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pop_count</span><span class="p">):</span>
+        <span class="n">rand1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">fit_pop_size</span><span class="p">)</span>
+        <span class="n">rand2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">fit_pop_size</span><span class="p">)</span>
+        <span class="n">rand3</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">fit_pop_size</span><span class="p">)</span>
+        <span class="n">parent1</span> <span class="o">=</span> <span class="n">fit_population</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rand1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">parent2</span> <span class="o">=</span> <span class="n">fit_population</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rand2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># select point at random for crossover
+</span>        <span class="n">crossover_index</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">parent_len</span><span class="p">)</span>
+
+        <span class="c1"># Split parent chromosomes and generate new full population of children
+</span>        <span class="n">chromosome_child</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">parent1</span><span class="p">[:</span><span class="n">crossover_index</span><span class="p">],</span> <span class="n">parent2</span><span class="p">[</span><span class="n">crossover_index</span><span class="p">:]])</span>
+        
+        <span class="c1"># Mutate chromosome
+</span>        <span class="n">chromosome_child</span> <span class="o">=</span> <span class="n">mutate_child_chromosomes</span><span class="p">(</span><span class="n">chromosome_child</span><span class="p">,</span> <span class="n">mutation_factor</span><span class="p">)</span>
+        
+        <span class="n">new_population</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chromosome_child</span><span class="p">)</span>    
+    <span class="n">new_population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">new_population</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">new_population</span>
+          
+    
+<span class="k">def</span> <span class="nf">progress_indicator</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Generation:'</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="s">'  Score:'</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">score</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+    
+
+    
+    
+<span class="c1"># Check the best individual
+</span><span class="k">def</span> <span class="nf">check_best_individual</span><span class="p">(</span><span class="n">seed_pop</span><span class="p">,</span> <span class="n">score_pop</span><span class="p">):</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="n">score_pop</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">score_pop</span><span class="p">))</span>
+    <span class="n">best_individual</span> <span class="o">=</span> <span class="n">seed_pop</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">max_value</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">best_individual</span>
+
+
+<span class="c1"># Plot the pop average fittness per generation
+</span><span class="k">def</span> <span class="nf">plot_mean_score</span><span class="p">(</span><span class="n">plot_mean_score_gen</span><span class="p">):</span>
+    <span class="c1"># Evolution Plot
+</span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_mean_score_gen</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Increasing fittness with generation'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Generations'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Average Popopulation Score'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h1 id="main-program">Main program</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create multiple generations
+</span>
+<span class="n">gen_interval</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">pop_count</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">generations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">mutation_factor</span> <span class="o">=</span> <span class="mf">0.12</span>
+
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
+
+<span class="n">plot_mean_score_gen</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">seed_pop</span> <span class="o">=</span> <span class="n">seed_population</span><span class="p">(</span><span class="n">pop_count</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generations</span><span class="p">):</span>
+    
+    <span class="c1"># Check individual fittness across population
+</span>    <span class="n">score_pop</span> <span class="o">=</span> <span class="n">population_score</span><span class="p">(</span><span class="n">seed_pop</span><span class="p">)</span> 
+   
+    <span class="c1"># Filter only fit indivudals and create new generation
+</span>    <span class="n">fit_individuals</span> <span class="o">=</span> <span class="n">fit_population</span><span class="p">(</span><span class="n">population</span><span class="o">=</span><span class="n">seed_pop</span><span class="p">,</span> <span class="n">pop_score</span><span class="o">=</span><span class="n">score_pop</span><span class="p">)</span>  
+    <span class="n">seed_pop</span> <span class="o">=</span> <span class="n">generate_new_population</span><span class="p">(</span><span class="n">fit_individuals</span><span class="p">,</span> <span class="n">mutation_factor</span><span class="p">)</span>     
+    
+    <span class="c1"># Create Plot
+</span>    <span class="n">mean_score_gen</span> <span class="o">=</span>  <span class="nb">sum</span><span class="p">(</span><span class="n">score_pop</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">score_pop</span><span class="p">)</span>
+    <span class="n">plot_mean_score_gen</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_score_gen</span><span class="p">)</span>
+    
+    
+    <span class="c1"># Progress indicator
+</span>    <span class="n">progress_indicator</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">gen_interval</span><span class="p">,</span> <span class="n">mean_score_gen</span><span class="p">)</span>
+  
+<span class="k">print</span><span class="p">(</span><span class="s">'Generations: '</span><span class="p">,</span> <span class="n">generations</span><span class="p">,</span> <span class="s">' Population Size: '</span><span class="p">,</span>  <span class="n">pop_count</span><span class="p">,</span> <span class="s">' Mutation rate: '</span><span class="p">,</span> <span class="n">mutation_factor</span>  <span class="p">)</span>
+<span class="c1"># Create plot
+</span><span class="n">plot_mean_score</span><span class="p">(</span><span class="n">plot_mean_score_gen</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s">"minutes"</span><span class="p">)</span>
+
+
+<span class="c1"># Show best individual
+</span><span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">-----------------------------------------------------------------------'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'This is the best indivdual out of'</span><span class="p">,</span> <span class="p">(</span><span class="n">pop_count</span> <span class="o">*</span> <span class="n">generations</span><span class="p">),</span><span class="s">'individuals with'</span><span class="p">,</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">score_pop</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="s">'matching characters.'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'-----------------------------------------------------------------------</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="n">check_best_individual</span><span class="p">(</span><span class="n">seed_pop</span><span class="p">,</span> <span class="n">score_pop</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Generation: 0   Score: 1
+Generation: 50   Score: 12
+Generation: 100   Score: 19
+Generation: 150   Score: 26
+Generation: 200   Score: 31
+Generation: 250   Score: 35
+Generation: 300   Score: 40
+Generation: 350   Score: 45
+Generation: 400   Score: 48
+Generation: 450   Score: 52
+Generation: 500   Score: 56
+Generation: 550   Score: 59
+Generation: 600   Score: 61
+Generation: 650   Score: 64
+Generation: 700   Score: 67
+Generation: 750   Score: 69
+Generation: 800   Score: 71
+Generation: 850   Score: 73
+Generation: 900   Score: 75
+Generation: 950   Score: 77
+Generation: 1000   Score: 79
+Generation: 1050   Score: 81
+Generation: 1100   Score: 82
+Generation: 1150   Score: 84
+Generation: 1200   Score: 85
+Generation: 1250   Score: 86
+Generation: 1300   Score: 86
+Generation: 1350   Score: 87
+Generation: 1400   Score: 88
+Generation: 1450   Score: 88
+Generation: 1500   Score: 88
+Generation: 1550   Score: 90
+Generation: 1600   Score: 90
+Generation: 1650   Score: 91
+Generation: 1700   Score: 91
+Generation: 1750   Score: 92
+Generation: 1800   Score: 93
+Generation: 1850   Score: 93
+Generation: 1900   Score: 94
+Generation: 1950   Score: 94
+Generation: 2000   Score: 94
+Generation: 2050   Score: 94
+Generation: 2100   Score: 95
+Generation: 2150   Score: 95
+Generation: 2200   Score: 95
+Generation: 2250   Score: 96
+Generation: 2300   Score: 96
+Generation: 2350   Score: 96
+Generation: 2400   Score: 96
+Generation: 2450   Score: 96
+Generation: 2500   Score: 96
+Generation: 2550   Score: 96
+Generation: 2600   Score: 96
+Generation: 2650   Score: 97
+Generation: 2700   Score: 97
+Generation: 2750   Score: 97
+Generation: 2800   Score: 97
+Generation: 2850   Score: 97
+Generation: 2900   Score: 97
+Generation: 2950   Score: 97
+Generation: 3000   Score: 97
+Generation: 3050   Score: 98
+Generation: 3100   Score: 98
+Generation: 3150   Score: 98
+Generation: 3200   Score: 98
+Generation: 3250   Score: 98
+Generation: 3300   Score: 98
+Generation: 3350   Score: 98
+Generation: 3400   Score: 98
+Generation: 3450   Score: 98
+Generation: 3500   Score: 98
+Generation: 3550   Score: 98
+Generation: 3600   Score: 98
+Generation: 3650   Score: 98
+Generation: 3700   Score: 98
+Generation: 3750   Score: 98
+Generation: 3800   Score: 98
+Generation: 3850   Score: 98
+Generation: 3900   Score: 98
+Generation: 3950   Score: 98
+Generation: 4000   Score: 98
+Generation: 4050   Score: 98
+Generation: 4100   Score: 98
+Generation: 4150   Score: 98
+Generation: 4200   Score: 98
+Generation: 4250   Score: 98
+Generation: 4300   Score: 98
+Generation: 4350   Score: 98
+Generation: 4400   Score: 98
+Generation: 4450   Score: 98
+Generation: 4500   Score: 98
+Generation: 4550   Score: 98
+Generation: 4600   Score: 98
+Generation: 4650   Score: 98
+Generation: 4700   Score: 98
+Generation: 4750   Score: 98
+Generation: 4800   Score: 98
+Generation: 4850   Score: 98
+Generation: 4900   Score: 98
+Generation: 4950   Score: 98
+Generations:  5000  Population Size:  1000  Mutation rate:  0.12
+</code></pre></div></div>
+
+<p><img src="output_5_1.png" alt="png" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>111.47 minutes
+
+-----------------------------------------------------------------------
+This is the best indivdual out of 5000000 individuals with 99.34747145187602 matching characters.
+-----------------------------------------------------------------------
+
+
+
+
+
+
+'When I Konsider every thing that grows\nHolds in perfection but a little moment,\nT=at this huge stage presenteth nought but shows\nWhereon the stars in secret influence comment;\nWhen I perceive that men asSplants increase,\nCh,ered and checked even by the self-same sky, Vaunt in their youthfvl sap, at height decrease,\nAnd wear their bVaXe state out of memory;\nThen the conceit of this inconstant stay\nSeXs you most rich in youth before my sight,\nWhere wasteful Time debateth with decay\nTo change your day of youth to sullied night,\nAnd all in war with Time Kor love of you,\nAs he takes from you, I elgraft you new.'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">evolved_text</span> <span class="o">=</span> <span class="n">check_best_individual</span><span class="p">(</span><span class="n">seed_pop</span><span class="p">,</span> <span class="n">score_pop</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"sample.txt"</span><span class="p">,</span> <span class="s">"wt"</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">text_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">evolved_text</span><span class="p">)</span>
+<span class="n">text_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
