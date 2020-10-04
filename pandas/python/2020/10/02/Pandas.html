@@ -6,31 +6,33 @@
 <title>Pandas Basics | DS Unplugged</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Pandas Basics" />
+<meta name="author" content="Sam Treacy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/2020/10/02/Pandas.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/2020/10/02/Pandas.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/2020/10/02/Pandas.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/10/02/Pandas.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Pandas Basics | DS Unplugged</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Pandas Basics" />
+<meta name="author" content="Sam Treacy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/2020/10/02/Pandas.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/2020/10/02/Pandas.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/2020/10/02/Pandas.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/10/02/Pandas.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/pandas/python/2020/10/02/Pandas.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +89,9 @@ window.onload = wrap_img;
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Pandas Basics</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-02T00:00:00-05:00" itemprop="datePublished">
         Oct 2, 2020
-      </time>
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
@@ -96,33 +100,28 @@ window.onload = wrap_img;
 </span></p>
 
     
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/DataScience/categories/#Pandas">Pandas</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#python">python</a>
+        
+      
+      </p>
+    
 
     
-      
-        <div class="pb-5 d-flex flex-wrap flex-justify-end">
-          <div class="px-2">
-
-    <a href="https://github.com/Sams101/DataScience/tree/master/_notebooks/2020-10-02-Pandas.ipynb" role="button" target="_blank">
-<img class="notebook-badge-image" src="/DataScience/assets/badges/github.svg" alt="View On GitHub">
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/Sams101/DataScience/master?filepath=_notebooks%2F2020-10-02-Pandas.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/DataScience/assets/badges/binder.svg" alt="Open In Binder"/>
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://colab.research.google.com/github/Sams101/DataScience/blob/master/_notebooks/2020-10-02-Pandas.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/DataScience/assets/badges/colab.svg" alt="Open In Colab"/>
-    </a>
-</div>
-        </div>
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#DataFrames">DataFrames </a></li>
+<li class="toc-entry toc-h1"><a href="#Missing-Data">Missing Data </a></li>
+<li class="toc-entry toc-h1"><a href="#Groupby">Groupby </a></li>
+<li class="toc-entry toc-h1"><a href="#Data-Input/Output">Data Input/Output </a></li>
+<li class="toc-entry toc-h1"><a href="#Operations">Operations </a></li>
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -162,7 +161,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;african_econ_crises.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'african_econ_crises.csv'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -333,7 +332,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -366,7 +365,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -381,9 +380,9 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Algeria&#39;, &#39;Angola&#39;, &#39;Central African Republic&#39;, &#39;Ivory Coast&#39;,
-       &#39;Egypt&#39;, &#39;Kenya&#39;, &#39;Mauritius&#39;, &#39;Morocco&#39;, &#39;Nigeria&#39;,
-       &#39;South Africa&#39;, &#39;Tunisia&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;], dtype=object)</pre>
+<pre>array(['Algeria', 'Angola', 'Central African Republic', 'Ivory Coast',
+       'Egypt', 'Kenya', 'Mauritius', 'Morocco', 'Nigeria',
+       'South Africa', 'Tunisia', 'Zambia', 'Zimbabwe'], dtype=object)</pre>
 </div>
 
 </div>
@@ -401,7 +400,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;inflation_annual_cpi&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'inflation_annual_cpi'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -487,7 +486,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Kenya&#39;</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;systemic_crisis&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Kenya'</span><span class="p">)</span>  <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'systemic_crisis'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'year'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -777,8 +776,8 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">crisis</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;systemic_crisis&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">crisis</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;systemic_crisis&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">crisis</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'systemic_crisis'</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">crisis</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'country'</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">'systemic_crisis'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -822,7 +821,7 @@ Name: systemic_crisis, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Zimbabwe&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sovereign_external_debt_default&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Zimbabwe'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'sovereign_external_debt_default'</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)])</span>
 </pre></div>
 
     </div>
@@ -855,7 +854,7 @@ Name: systemic_crisis, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Algeria&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;exch_usd&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Algeria'</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'exch_usd'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1105,9 +1104,12 @@ Name: systemic_crisis, dtype: int64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="DataFrames">DataFrames<a class="anchor-link" href="#DataFrames"> </a></h1>
+<h1 id="DataFrames">
+<a class="anchor" href="#DataFrames" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataFrames<a class="anchor-link" href="#DataFrames"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -1136,8 +1138,8 @@ Name: systemic_crisis, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]</span>
-<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'W'</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">,</span> <span class="s1">'Y'</span><span class="p">,</span> <span class="s1">'Z'</span><span class="p">]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">,</span> <span class="s1">'d'</span><span class="p">,</span><span class="s1">'E'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -1288,7 +1290,7 @@ Name: systemic_crisis, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'W'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -1326,7 +1328,7 @@ Name: W, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'W'</span><span class="p">,</span> <span class="s1">'Z'</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -1408,7 +1410,7 @@ Name: W, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'W'</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1441,7 +1443,7 @@ Name: W, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'new'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'W'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Y'</span><span class="p">]</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -1542,7 +1544,7 @@ Name: W, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'new'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -1643,7 +1645,7 @@ Name: W, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'new'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -1738,7 +1740,7 @@ Name: W, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'A'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -1775,7 +1777,7 @@ Name: A, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -1958,7 +1960,7 @@ Name: A, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'C'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2045,7 +2047,7 @@ Name: A, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'W'</span><span class="p">,</span> <span class="s1">'Y'</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -2400,7 +2402,7 @@ Name: A, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'X'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </pre></div>
 
     </div>
@@ -2438,7 +2440,7 @@ Name: X, dtype: bool</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'X'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2455,7 +2457,7 @@ Name: X, dtype: bool</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'X'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">][</span><span class="s1">'Y'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2491,7 +2493,7 @@ Name: Y, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">][[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'X'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">][[</span><span class="s1">'X'</span><span class="p">,</span> <span class="s1">'Z'</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -2563,7 +2565,7 @@ Name: Y, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'W'</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Y'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -2845,7 +2847,7 @@ Name: Y, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">newind</span> <span class="o">=</span>  <span class="s1">&#39;CA NY WY OR CO&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">newind</span> <span class="o">=</span>  <span class="s1">'CA NY WY OR CO'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="n">newind</span>
 </pre></div>
 
@@ -2861,7 +2863,7 @@ Name: Y, dtype: int64</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;CA&#39;, &#39;NY&#39;, &#39;WY&#39;, &#39;OR&#39;, &#39;CO&#39;]</pre>
+<pre>['CA', 'NY', 'WY', 'OR', 'CO']</pre>
 </div>
 
 </div>
@@ -2879,7 +2881,7 @@ Name: Y, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;States&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">newind</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'States'</span><span class="p">]</span> <span class="o">=</span> <span class="n">newind</span>
 </pre></div>
 
     </div>
@@ -3011,7 +3013,7 @@ Name: Y, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;States&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'States'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3234,7 +3236,7 @@ Name: Y, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;States&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'States'</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -3518,7 +3520,7 @@ dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Index: 5 entries, CA to CO
 Data columns (total 5 columns):
  #   Column  Non-Null Count  Dtype
@@ -3540,9 +3542,12 @@ memory usage: 240.0+ bytes
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Missing-Data">Missing Data<a class="anchor-link" href="#Missing-Data"> </a></h1>
+<h1 id="Missing-Data">
+<a class="anchor" href="#Missing-Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Missing Data<a class="anchor-link" href="#Missing-Data"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -3555,9 +3560,9 @@ memory usage: 240.0+ bytes
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">df</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>  
-                  <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
-                  <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span> <span class="p">]})</span>
+<span class="n">df</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>  
+                  <span class="s1">'B'</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+                  <span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span> <span class="p">]})</span>
 
 <span class="n">df</span>
 </pre></div>
@@ -3859,7 +3864,7 @@ memory usage: 240.0+ bytes
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;Fill Value&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s1">'Fill Value'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3941,7 +3946,7 @@ memory usage: 240.0+ bytes
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'A'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3978,7 +3983,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'A'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'A'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -4090,9 +4095,12 @@ Name: A, dtype: float64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Groupby">Groupby<a class="anchor-link" href="#Groupby"> </a></h1>
+<h1 id="Groupby">
+<a class="anchor" href="#Groupby" aria-hidden="true"><span class="octicon octicon-link"></span></a>Groupby<a class="anchor-link" href="#Groupby"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -4120,7 +4128,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Universities.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'Universities.csv'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -4238,7 +4246,7 @@ Name: A, dtype: float64</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Step 1 simply returns a special groupby object waiting to have an aggregate method called on it!</span>
-<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -4271,7 +4279,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4351,7 +4359,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -4384,7 +4392,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -4464,7 +4472,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mad</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">mad</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4544,7 +4552,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4624,7 +4632,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4704,7 +4712,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4784,7 +4792,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4964,7 +4972,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Sector&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'Year'</span><span class="p">,</span> <span class="s1">'Sector'</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -5171,7 +5179,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -5308,7 +5316,7 @@ Name: A, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -5427,9 +5435,12 @@ Name: A, dtype: float64</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Data-Input/Output">Data Input/Output<a class="anchor-link" href="#Data-Input/Output"> </a></h1>
+<h1 id="Data-Input/Output">
+<a class="anchor" href="#Data-Input/Output" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Input/Output<a class="anchor-link" href="#Data-Input/Output"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -5455,7 +5466,7 @@ Name: A, dtype: float64</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;/Users/samtreacy/OneDrive - TietoEVRY/00_Analysis/Jupyter/Tensorflow_Cert/Summaries_to_Study&#39;</pre>
+<pre>'/Users/samtreacy/OneDrive - TietoEVRY/00_Analysis/Jupyter/Tensorflow_Cert/Summaries_to_Study'</pre>
 </div>
 
 </div>
@@ -5506,7 +5517,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;example.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'example.csv'</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -5594,7 +5605,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;example.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'example.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -5611,7 +5622,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wiki</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -5753,7 +5764,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">&#39;http://www.fdic.gov/bank/individual/failed/banklist.html&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="s1">'http://www.fdic.gov/bank/individual/failed/banklist.html'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -5869,9 +5880,12 @@ Excel_Sample.xlsx        bank.csv
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Operations">Operations<a class="anchor-link" href="#Operations"> </a></h1>
+<h1 id="Operations">
+<a class="anchor" href="#Operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Operations<a class="anchor-link" href="#Operations"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -5883,9 +5897,9 @@ Excel_Sample.xlsx        bank.csv
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df_one</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;k1&#39;</span><span class="p">:[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">],</span>
-                      <span class="s1">&#39;col1&#39;</span><span class="p">:[</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">500</span><span class="p">],</span>
-                      <span class="s1">&#39;col2&#39;</span><span class="p">:[</span><span class="s1">&#39;NY&#39;</span><span class="p">,</span><span class="s1">&#39;CA&#39;</span><span class="p">,</span><span class="s1">&#39;WA&#39;</span><span class="p">,</span><span class="s1">&#39;WA&#39;</span><span class="p">,</span><span class="s1">&#39;AK&#39;</span><span class="p">,</span><span class="s1">&#39;NV&#39;</span><span class="p">]})</span>
+<span class="n">df_one</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'k1'</span><span class="p">:[</span><span class="s1">'A'</span><span class="p">,</span><span class="s1">'A'</span><span class="p">,</span><span class="s1">'B'</span><span class="p">,</span><span class="s1">'B'</span><span class="p">,</span><span class="s1">'C'</span><span class="p">,</span><span class="s1">'C'</span><span class="p">],</span>
+                      <span class="s1">'col1'</span><span class="p">:[</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">500</span><span class="p">],</span>
+                      <span class="s1">'col2'</span><span class="p">:[</span><span class="s1">'NY'</span><span class="p">,</span><span class="s1">'CA'</span><span class="p">,</span><span class="s1">'WA'</span><span class="p">,</span><span class="s1">'WA'</span><span class="p">,</span><span class="s1">'AK'</span><span class="p">,</span><span class="s1">'NV'</span><span class="p">]})</span>
 </pre></div>
 
     </div>
@@ -5996,7 +6010,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">'col2'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -6011,7 +6025,7 @@ Excel_Sample.xlsx        bank.csv
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;NY&#39;, &#39;CA&#39;, &#39;WA&#39;, &#39;AK&#39;, &#39;NV&#39;], dtype=object)</pre>
+<pre>array(['NY', 'CA', 'WA', 'AK', 'NV'], dtype=object)</pre>
 </div>
 
 </div>
@@ -6029,7 +6043,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">'col2'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -6062,7 +6076,7 @@ Excel_Sample.xlsx        bank.csv
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">'col2'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -6188,7 +6202,7 @@ Name: col2, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;New Col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">'New Col'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_one</span><span class="p">[</span><span class="s1">'col1'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
 <span class="n">df_one</span>
 </pre></div>
 
@@ -6308,7 +6322,7 @@ Name: col2, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grab_first_letter</span><span class="p">(</span><span class="s1">&#39;NY&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grab_first_letter</span><span class="p">(</span><span class="s1">'NY'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -6323,7 +6337,7 @@ Name: col2, dtype: int64</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;N&#39;</pre>
+<pre>'N'</pre>
 </div>
 
 </div>
@@ -6341,7 +6355,7 @@ Name: col2, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grab_first_letter</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">'col2'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grab_first_letter</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -6380,7 +6394,7 @@ Name: col2, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;first letter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_one</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grab_first_letter</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_one</span><span class="p">[</span><span class="s1">'first letter'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_one</span><span class="p">[</span><span class="s1">'col2'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">grab_first_letter</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -6508,7 +6522,7 @@ Name: col2, dtype: object</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;african_econ_crises.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'african_econ_crises.csv'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -6525,7 +6539,7 @@ Name: col2, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -6558,7 +6572,7 @@ Name: col2, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Kenya&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;systemic_crisis&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Kenya'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'systemic_crisis'</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'year'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -6845,7 +6859,15 @@ Name: col2, dtype: object</pre>
 
 
 
-  </div><a class="u-url" href="/DataScience/2020/10/02/Pandas.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Sams101/DataScience"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/DataScience/pandas/python/2020/10/02/Pandas.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">

@@ -6,31 +6,33 @@
 <title>Numpy Basics | DS Unplugged</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Numpy Basics" />
+<meta name="author" content="Sam Treacy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/2020/10/02/Numpy.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/2020/10/02/Numpy.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Numpy Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/2020/10/02/Numpy.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/10/02/Numpy.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Numpy Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Numpy Basics | DS Unplugged</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Numpy Basics" />
+<meta name="author" content="Sam Treacy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/2020/10/02/Numpy.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/2020/10/02/Numpy.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Numpy Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/2020/10/02/Numpy.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/10/02/Numpy.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Numpy Basics","dateModified":"2020-10-02T00:00:00-05:00","datePublished":"2020-10-02T00:00:00-05:00","url":"https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/numpy/python/2020/10/02/Numpy.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,7 +89,9 @@ window.onload = wrap_img;
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Numpy Basics</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-02T00:00:00-05:00" itemprop="datePublished">
         Oct 2, 2020
-      </time>
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
@@ -96,33 +100,30 @@ window.onload = wrap_img;
 </span></p>
 
     
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/DataScience/categories/#NumPY">NumPY</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#python">python</a>
+        
+      
+      </p>
+    
 
     
-      
-        <div class="pb-5 d-flex flex-wrap flex-justify-end">
-          <div class="px-2">
-
-    <a href="https://github.com/Sams101/DataScience/tree/master/_notebooks/2020-10-02-Numpy.ipynb" role="button" target="_blank">
-<img class="notebook-badge-image" src="/DataScience/assets/badges/github.svg" alt="View On GitHub">
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/Sams101/DataScience/master?filepath=_notebooks%2F2020-10-02-Numpy.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/DataScience/assets/badges/binder.svg" alt="Open In Binder"/>
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://colab.research.google.com/github/Sams101/DataScience/blob/master/_notebooks/2020-10-02-Numpy.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/DataScience/assets/badges/colab.svg" alt="Open In Colab"/>
-    </a>
-</div>
-        </div>
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Indexing-a-2D-array-(matrices)">Indexing a 2D array (matrices) </a></li>
+<li class="toc-entry toc-h1"><a href="#Conditional-Selection">Conditional Selection </a></li>
+<li class="toc-entry toc-h1"><a href="#NumPy-Operations">NumPy Operations </a></li>
+<li class="toc-entry toc-h1"><a href="#Universal-Array-Functions">Universal Array Functions </a></li>
+<li class="toc-entry toc-h1"><a href="#Summary-Statistics-on-Arrays">Summary Statistics on Arrays </a></li>
+<li class="toc-entry toc-h1"><a href="#Axis-Logic">Axis Logic </a></li>
+<li class="toc-entry toc-h1"><a href="#NumPy-Exercises-and-Solutions">NumPy Exercises and Solutions </a></li>
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -1317,7 +1318,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>dtype(&#39;int64&#39;)</pre>
+<pre>dtype('int64')</pre>
 </div>
 
 </div>
@@ -1351,7 +1352,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>dtype(&#39;float64&#39;)</pre>
+<pre>dtype('float64')</pre>
 </div>
 
 </div>
@@ -1718,9 +1719,13 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Indexing-a-2D-array-(matrices)">Indexing a 2D array (matrices)<a class="anchor-link" href="#Indexing-a-2D-array-(matrices)"> </a></h1><p>The general format is <strong>arr_2d[row][col]</strong> or <strong>arr_2d[row,col]</strong>. I recommend using the comma notation for clarity.</p>
+<h1 id="Indexing-a-2D-array-(matrices)">
+<a class="anchor" href="#Indexing-a-2D-array-(matrices)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Indexing a 2D array (matrices)<a class="anchor-link" href="#Indexing-a-2D-array-(matrices)"> </a>
+</h1>
+<p>The general format is <strong>arr_2d[row][col]</strong> or <strong>arr_2d[row,col]</strong>. I recommend using the comma notation for clarity.</p>
 
 </div>
 </div>
@@ -1961,9 +1966,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Conditional-Selection">Conditional Selection<a class="anchor-link" href="#Conditional-Selection"> </a></h1>
+<h1 id="Conditional-Selection">
+<a class="anchor" href="#Conditional-Selection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conditional Selection<a class="anchor-link" href="#Conditional-Selection"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -2170,9 +2178,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="NumPy-Operations">NumPy Operations<a class="anchor-link" href="#NumPy-Operations"> </a></h1>
+<h1 id="NumPy-Operations">
+<a class="anchor" href="#NumPy-Operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>NumPy Operations<a class="anchor-link" href="#NumPy-Operations"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -2314,7 +2325,7 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/samtreacy/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in true_divide
-  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+  """Entry point for launching an IPython kernel.
 </pre>
 </div>
 </div>
@@ -2356,7 +2367,7 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/samtreacy/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in true_divide
-  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+  """Entry point for launching an IPython kernel.
 </pre>
 </div>
 </div>
@@ -2411,9 +2422,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Universal-Array-Functions">Universal Array Functions<a class="anchor-link" href="#Universal-Array-Functions"> </a></h1>
+<h1 id="Universal-Array-Functions">
+<a class="anchor" href="#Universal-Array-Functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Universal Array Functions<a class="anchor-link" href="#Universal-Array-Functions"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -2541,7 +2555,7 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/samtreacy/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in log
-  &#34;&#34;&#34;Entry point for launching an IPython kernel.
+  """Entry point for launching an IPython kernel.
 </pre>
 </div>
 </div>
@@ -2563,9 +2577,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Summary-Statistics-on-Arrays">Summary Statistics on Arrays<a class="anchor-link" href="#Summary-Statistics-on-Arrays"> </a></h1>
+<h1 id="Summary-Statistics-on-Arrays">
+<a class="anchor" href="#Summary-Statistics-on-Arrays" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary Statistics on Arrays<a class="anchor-link" href="#Summary-Statistics-on-Arrays"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -2751,9 +2768,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Axis-Logic">Axis Logic<a class="anchor-link" href="#Axis-Logic"> </a></h1>
+<h1 id="Axis-Logic">
+<a class="anchor" href="#Axis-Logic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Axis Logic<a class="anchor-link" href="#Axis-Logic"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -2892,9 +2912,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="NumPy-Exercises-and-Solutions">NumPy Exercises and Solutions<a class="anchor-link" href="#NumPy-Exercises-and-Solutions"> </a></h1>
+<h1 id="NumPy-Exercises-and-Solutions">
+<a class="anchor" href="#NumPy-Exercises-and-Solutions" aria-hidden="true"><span class="octicon octicon-link"></span></a>NumPy Exercises and Solutions<a class="anchor-link" href="#NumPy-Exercises-and-Solutions"> </a>
+</h1>
 </div>
 </div>
 </div>
@@ -3544,7 +3567,15 @@ window.onload = wrap_img;
 
 
 
-  </div><a class="u-url" href="/DataScience/2020/10/02/Numpy.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Sams101/DataScience"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/DataScience/numpy/python/2020/10/02/Numpy.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
