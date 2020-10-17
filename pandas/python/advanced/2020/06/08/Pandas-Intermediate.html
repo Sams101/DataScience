@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pandas Advanced | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Pandas Advanced" />
+<meta name="author" content="Sam Treacy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Advanced","dateModified":"2020-06-08T00:00:00-05:00","datePublished":"2020-06-08T00:00:00-05:00","url":"https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pandas Advanced | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Pandas Advanced" />
+<meta name="author" content="Sam Treacy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Advanced","dateModified":"2020-06-08T00:00:00-05:00","datePublished":"2020-06-08T00:00:00-05:00","url":"https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/DataScience/">DS Unplugged</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/DataScience/about/">About Me</a><a class="page-link" href="/DataScience/search/">Search</a><a class="page-link" href="/DataScience/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Pandas Advanced</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-08T00:00:00-05:00" itemprop="datePublished">
+        Jun 8, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/DataScience/categories/#pandas">pandas</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#python">python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#advanced">advanced</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-06-08-Pandas-Intermediate.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'IMDb movies.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Mass renaming of columns</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="s1">'_new'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id_new</th>
+      <th>title_new</th>
+      <th>original_title_new</th>
+      <th>year_new</th>
+      <th>date_published_new</th>
+      <th>genre_new</th>
+      <th>duration_new</th>
+      <th>country_new</th>
+      <th>language_new</th>
+      <th>director_new</th>
+      <th>...</th>
+      <th>actors_new</th>
+      <th>description_new</th>
+      <th>avg_vote_new</th>
+      <th>votes_new</th>
+      <th>budget_new</th>
+      <th>usa_gross_income_new</th>
+      <th>worlwide_gross_income_new</th>
+      <th>metascore_new</th>
+      <th>reviews_from_users_new</th>
+      <th>reviews_from_critics_new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>IMDB_TITLE_ID</th>
+      <th>TITLE</th>
+      <th>ORIGINAL_TITLE</th>
+      <th>YEAR</th>
+      <th>DATE_PUBLISHED</th>
+      <th>GENRE</th>
+      <th>DURATION</th>
+      <th>COUNTRY</th>
+      <th>LANGUAGE</th>
+      <th>DIRECTOR</th>
+      <th>...</th>
+      <th>ACTORS</th>
+      <th>DESCRIPTION</th>
+      <th>AVG_VOTE</th>
+      <th>VOTES</th>
+      <th>BUDGET</th>
+      <th>USA_GROSS_INCOME</th>
+      <th>WORLWIDE_GROSS_INCOME</th>
+      <th>METASCORE</th>
+      <th>REVIEWS_FROM_USERS</th>
+      <th>REVIEWS_FROM_CRITICS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'_new'</span> <span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0_new</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1_new</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'year'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>writer</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1912</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>Victorien Sardou</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>1911</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>Urban Gad, Gebhard Schätzler-Perasini</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1906</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'year'</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>writer</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019</th>
+      <td>tt9914286</td>
+      <td>Sokagin Çocuklari</td>
+      <td>Sokagin Çocuklari</td>
+      <td>2019-03-15</td>
+      <td>Drama, Family</td>
+      <td>98</td>
+      <td>Turkey</td>
+      <td>Turkish</td>
+      <td>Ahmet Faik Akinci</td>
+      <td>Ahmet Faik Akinci, Kasim Uçkan</td>
+      <td>...</td>
+      <td>Ahmet Faik Akinci, Belma Mamati, Metin Keçeci,...</td>
+      <td>NaN</td>
+      <td>7.2</td>
+      <td>190</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>$ 2833</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>tt7287656</td>
+      <td>Çat Kapi Ask</td>
+      <td>Çat Kapi Ask</td>
+      <td>2019-03-22</td>
+      <td>Comedy, Romance</td>
+      <td>92</td>
+      <td>Turkey</td>
+      <td>Turkish</td>
+      <td>Erhan Baytimur</td>
+      <td>Deniz Güney Isintek, Nesrin Zamur</td>
+      <td>...</td>
+      <td>Müge Boz, Jess Molho, Nergis Kumbasar, Elmaddi...</td>
+      <td>Su is a dreamer who believes that the love of ...</td>
+      <td>3.5</td>
+      <td>208</td>
+      <td>TRL 1500000</td>
+      <td>NaN</td>
+      <td>$ 34417</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>tt7201744</td>
+      <td>Philophobia</td>
+      <td>Philophobia</td>
+      <td>2019-10-13</td>
+      <td>Drama</td>
+      <td>125</td>
+      <td>UK</td>
+      <td>English</td>
+      <td>Guy Davies</td>
+      <td>Matthew Brawley, Guy Davies</td>
+      <td>...</td>
+      <td>Harry Lloyd, James Faulkner, Joshua Glenister,...</td>
+      <td>Set in the English countryside, Philophobia de...</td>
+      <td>8.4</td>
+      <td>487</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>7.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'year'</span><span class="p">)</span>
+
+<span class="n">new</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>writer</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1906</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1911</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>Urban Gad, Gebhard Schätzler-Perasini</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1912</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>Victorien Sardou</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1906</td>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1911</td>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1912</td>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Topics to include </span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">()</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">dayofweek</span><span class="p">,</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">series</span> <span class="n">goes</span> <span class="n">here</span><span class="p">)</span>
+
+
+<span class="c1"># Filter, Sort, and Groupby</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="o">|</span> <span class="n">Checks</span> <span class="k">for</span> <span class="n">null</span> <span class="n">Values</span><span class="p">,</span> <span class="n">Returns</span> <span class="n">Boolean</span> <span class="n">Arrray</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span> <span class="o">|</span> <span class="n">Opposite</span> <span class="n">of</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span> <span class="o">|</span> <span class="n">Rows</span> <span class="n">where</span> <span class="n">the</span> <span class="n">column</span> <span class="n">col</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="mf">0.5</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.7</span><span class="p">)]</span> <span class="o">|</span> <span class="n">Rows</span> <span class="n">where</span> <span class="mf">0.7</span> <span class="o">&gt;</span> <span class="n">col</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="o">|</span> <span class="n">Returns</span> <span class="n">a</span> <span class="n">groupby</span> <span class="nb">object</span> <span class="k">for</span> <span class="n">values</span> <span class="kn">from</span> <span class="nn">one</span> <span class="n">column</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">col1</span><span class="p">,</span><span class="n">col2</span><span class="p">])</span> <span class="o">|</span> <span class="n">Returns</span> <span class="n">groupby</span> <span class="nb">object</span> <span class="k">for</span> <span class="n">values</span> <span class="kn">from</span> <span class="nn">multiple</span> <span class="n">columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col1</span><span class="p">)[</span><span class="n">col2</span><span class="p">]</span> <span class="o">|</span> <span class="n">Returns</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">the</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">col2</span><span class="p">,</span> <span class="n">grouped</span> <span class="n">by</span> <span class="n">the</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">col1</span> <span class="p">(</span><span class="n">mean</span> <span class="n">can</span> <span class="n">be</span> <span class="n">replaced</span> <span class="k">with</span> <span class="n">almost</span> <span class="nb">any</span> <span class="n">function</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">statistics</span> <span class="n">module</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">col2</span><span class="p">,</span><span class="n">col3</span><span class="p">],</span><span class="n">aggfunc</span><span class="o">=</span><span class="n">mean</span><span class="p">)</span> <span class="o">|</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">pivot</span> <span class="n">table</span> <span class="n">that</span> <span class="n">groups</span> <span class="n">by</span> <span class="n">col1</span> <span class="ow">and</span> <span class="n">calculates</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">col2</span> <span class="ow">and</span> <span class="n">col3</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> <span class="o">|</span> <span class="n">Find</span> <span class="n">the</span> <span class="n">average</span> <span class="n">across</span> <span class="nb">all</span> <span class="n">columns</span> <span class="k">for</span> <span class="n">every</span> <span class="n">unique</span> <span class="n">col1</span> <span class="n">group</span>
+<span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span> <span class="o">|</span> <span class="n">Apply</span> <span class="n">the</span> <span class="n">function</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="n">across</span> <span class="n">each</span> <span class="n">column</span>
+<span class="n">nf</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Apply</span> <span class="n">the</span> <span class="n">function</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="n">across</span> <span class="n">each</span> <span class="n">row</span>
+
+
+<span class="n">Join</span><span class="o">/</span><span class="n">Combine</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span> <span class="o">|</span> <span class="n">Add</span> <span class="n">the</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">df1</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">df2</span> <span class="p">(</span><span class="n">columns</span> <span class="n">should</span> <span class="n">be</span> <span class="n">identical</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Add</span> <span class="n">the</span> <span class="n">columns</span> <span class="ow">in</span> <span class="n">df1</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">df2</span> <span class="p">(</span><span class="n">rows</span> <span class="n">should</span> <span class="n">be</span> <span class="n">identical</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">'inner'</span><span class="p">)</span> <span class="o">|</span> <span class="n">SQL</span><span class="o">-</span><span class="n">style</span> <span class="n">join</span> <span class="n">the</span> <span class="n">columns</span> <span class="ow">in</span> <span class="n">df1</span> <span class="k">with</span> <span class="n">the</span> <span class="n">columns</span> <span class="n">on</span> <span class="n">df2</span> <span class="n">where</span> <span class="n">the</span> <span class="n">rows</span> <span class="k">for</span> <span class="n">col</span> <span class="n">have</span> <span class="n">identical</span> <span class="n">values</span><span class="o">.</span> <span class="s1">'how'</span> <span class="n">can</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span> <span class="s1">'left'</span><span class="p">,</span> <span class="s1">'right'</span><span class="p">,</span> <span class="s1">'outer'</span><span class="p">,</span> <span class="s1">'inner'</span>
+
+
+
+<span class="n">Conditional</span> <span class="n">renaming</span> <span class="n">values</span> <span class="n">based</span> <span class="n">on</span> <span class="nb">filter</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1945</span> <span class="p">[</span><span class="s1">'one'</span><span class="p">,</span> <span class="s1">'two'</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'new'</span><span class="p">,</span> <span class="s1">'new2'</span><span class="p">]</span>
+
+
+<span class="n">get_dummies</span>
+<span class="n">unstack</span>
+<span class="n">stack</span>
+
+<span class="n">group</span><span class="o">.</span><span class="n">size</span>
+<span class="n">group</span><span class="o">.</span><span class="n">sum</span>
+<span class="n">group</span><span class="o">.</span><span class="n">agg</span><span class="p">({})</span>
+
+<span class="n">multiindex</span>
+
+
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">get_dummies</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"&lt;ipython-input-7-5ea84c6938fb&gt;"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    Data Cleaning</span>
+                ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Sams101/DataScience"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/DataScience/pandas/python/advanced/2020/06/08/Pandas-Intermediate.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/DataScience/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/DataScience/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/DataScience/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A place to maintain Data Science and Machine learning projects</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
