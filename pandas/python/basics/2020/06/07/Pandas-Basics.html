@@ -1,0 +1,5341 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pandas Basics | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Pandas Basics" />
+<meta name="author" content="Sam Treacy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-07T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Basics","dateModified":"2020-06-07T00:00:00-05:00","datePublished":"2020-06-07T00:00:00-05:00","url":"https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pandas Basics | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Pandas Basics" />
+<meta name="author" content="Sam Treacy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-07T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Pandas Basics","dateModified":"2020-06-07T00:00:00-05:00","datePublished":"2020-06-07T00:00:00-05:00","url":"https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/DataScience/">DS Unplugged</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/DataScience/about/">About Me</a><a class="page-link" href="/DataScience/search/">Search</a><a class="page-link" href="/DataScience/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Pandas Basics</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-06-07T00:00:00-05:00" itemprop="datePublished">
+        Jun 7, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      26 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/DataScience/categories/#pandas">pandas</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#python">python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#basics">basics</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Importing-modules">Importing modules </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Viewing-Data">Viewing Data </a></li>
+<li class="toc-entry toc-h2"><a href="#Get-Dataframe-information">Get Dataframe information </a></li>
+<li class="toc-entry toc-h2"><a href="#Sorting-Values">Sorting Values </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Basic-Statistics">Basic Statistics </a></li>
+<li class="toc-entry toc-h1"><a href="#Subsetting-a-Dataframe">Subsetting a Dataframe </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Subsetting-a-Dataframe-using-.iloc[...]">Subsetting a Dataframe using .iloc[...] </a></li>
+<li class="toc-entry toc-h2"><a href="#Subsetting-using-.loc[..]">Subsetting using .loc[..] </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Manipulating-dataframe-values">Manipulating dataframe values </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Removing-rows-and-columns-with-null-values">Removing rows and columns with null values </a></li>
+<li class="toc-entry toc-h2"><a href="#Replacing-null-values">Replacing null values </a></li>
+<li class="toc-entry toc-h2"><a href="#Rounding-values">Rounding values </a></li>
+<li class="toc-entry toc-h2"><a href="#Changing-data-types">Changing data types </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Acknowledgements:">Acknowledgements: </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-06-07-Pandas-Basics.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This notebook will get you to a point where you can quickly explore and manipulate a dataset.</p>
+<p>If you would like to replicate the exercises below, just download the following IMDb movies.csv from Kaggle <a href="https://www.kaggle.com/stefanoleone992/imdb-extensive-dataset">here.</a> If you don't have a Kaggle account you will need to create one first to download the file.</p>
+<h1 id="Importing-modules">
+<a class="anchor" href="#Importing-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing modules<a class="anchor-link" href="#Importing-modules"> </a>
+</h1>
+<p>Let's start by loading the Pandas module using <b>import pandas</b>. To save time when calling the module we can load it using the alias "pd" by using the <b>as</b> command. This means you only need to use the following pattern when calling a pandas function <b>pd.function(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The dataset is formatted as CSV so we need to call the <b>.read_csv(..)</b> function. If it was saved as an Excel file we could use the <b>.read_excel(..)</b> function instead.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'IMDb movies.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Viewing-Data">
+<a class="anchor" href="#Viewing-Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viewing Data<a class="anchor-link" href="#Viewing-Data"> </a>
+</h2>
+<p>Let's view the data. Use the <b>.head(..)</b> method to view the first rows of data. If you pass a value in, in this case 2, then only the first 2 rows will be selected.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the <b>.tail(..)</b> method to view the last rows of data. If you pass a value in, in this case 2, then only the last 2 rows will be selected.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>81271</th>
+      <td>tt9911774</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>130</td>
+      <td>India</td>
+      <td>Malayalam</td>
+      <td>Vineesh Aaradya</td>
+      <td>...</td>
+      <td>Anoop Chandran, Indrans, Sona Nair, Simon Brit...</td>
+      <td>NaN</td>
+      <td>8.4</td>
+      <td>369</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>tt9914286</td>
+      <td>Sokagin Çocuklari</td>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Drama, Family</td>
+      <td>98</td>
+      <td>Turkey</td>
+      <td>Turkish</td>
+      <td>Ahmet Faik Akinci</td>
+      <td>...</td>
+      <td>Ahmet Faik Akinci, Belma Mamati, Metin Keçeci,...</td>
+      <td>NaN</td>
+      <td>7.2</td>
+      <td>190</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>$ 2833</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Get-Dataframe-information">
+<a class="anchor" href="#Get-Dataframe-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Dataframe information<a class="anchor-link" href="#Get-Dataframe-information"> </a>
+</h2>
+<p>You can use the <b>.shape</b> method to check the dimension of the dataframe. In the example below we see there are 81273 rows and 22 columns.</p>
+<p>Note this and the <b>.size</b> method below do not have a trailing parentheses.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(81273, 22)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <b>.size</b> method returns the number of cells in the dataframe i.e. number of rows by columns.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1788006</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <b>.info(..)</b> method is very useful as you can simultaneously check the names of each column, how many values are not null per column, and their datatype.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 81273 entries, 0 to 81272
+Data columns (total 22 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   imdb_title_id          81273 non-null  object 
+ 1   title                  81273 non-null  object 
+ 2   original_title         81273 non-null  object 
+ 3   year                   81273 non-null  int64  
+ 4   date_published         81273 non-null  object 
+ 5   genre                  81273 non-null  object 
+ 6   duration               81273 non-null  int64  
+ 7   country                81234 non-null  object 
+ 8   language               80518 non-null  object 
+ 9   director               81200 non-null  object 
+ 10  writer                 79780 non-null  object 
+ 11  production_company     76948 non-null  object 
+ 12  actors                 81207 non-null  object 
+ 13  description            78843 non-null  object 
+ 14  avg_vote               81273 non-null  float64
+ 15  votes                  81273 non-null  int64  
+ 16  budget                 22804 non-null  object 
+ 17  usa_gross_income       15094 non-null  object 
+ 18  worlwide_gross_income  29892 non-null  object 
+ 19  metascore              12722 non-null  float64
+ 20  reviews_from_users     74196 non-null  float64
+ 21  reviews_from_critics   70286 non-null  float64
+dtypes: float64(4), int64(3), object(15)
+memory usage: 13.6+ MB
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the following command to create a list of all column names.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>['imdb_title_id',
+ 'title',
+ 'original_title',
+ 'year',
+ 'date_published',
+ 'genre',
+ 'duration',
+ 'country',
+ 'language',
+ 'director',
+ 'writer',
+ 'production_company',
+ 'actors',
+ 'description',
+ 'avg_vote',
+ 'votes',
+ 'budget',
+ 'usa_gross_income',
+ 'worlwide_gross_income',
+ 'metascore',
+ 'reviews_from_users',
+ 'reviews_from_critics']</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <b>.value_counts(..)</b> to quickly check the number of occurrences of each value in a column.</p>
+<p>Note: The values themselves (e.g. 2017, 2016, ...) are returned in the index of a new data object.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2017    3106
+2016    3033
+2015    2903
+2018    2880
+2014    2851
+        ... 
+1915      21
+1913      13
+1912       5
+1911       4
+1906       1
+Name: year, Length: 110, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sorting-Values">
+<a class="anchor" href="#Sorting-Values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sorting Values<a class="anchor-link" href="#Sorting-Values"> </a>
+</h2>
+<p>You can sort column values either alphabetically or numerically by using the <b>.sort_values(..)</b> method.</p>
+<p>Note: By default values will be sorted in ascending order.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1906
+34547    1911
+3        1911
+38007    1911
+1        1911
+         ... 
+78770    2019
+78735    2019
+78707    2019
+78856    2019
+81272    2019
+Name: year, Length: 81273, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pass <b>ascending=False</b> into the <b>.sort_values(..)</b> method and values will be sorted in descending order.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>81272    2019
+78856    2019
+78707    2019
+78735    2019
+78770    2019
+         ... 
+1        1911
+38007    1911
+3        1911
+34547    1911
+0        1906
+Name: year, Length: 81273, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can sort the dataframe based on more than one column. Just pass the names of the columns into the <b>.sort_values(..)</b> method as a list. You can independently sort the values by also passing a list into the <b>ascending</b> argument, with boolean True or False.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'duration'</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>34547</th>
+      <td>tt0191323</td>
+      <td>Oborona Sevastopolya</td>
+      <td>Oborona Sevastopolya</td>
+      <td>1911</td>
+      <td>1911-12-09</td>
+      <td>History, War</td>
+      <td>100</td>
+      <td>Russia</td>
+      <td>NaN</td>
+      <td>Vasili Goncharov, Aleksandr Khanzhonkov</td>
+      <td>...</td>
+      <td>Andrey Gromov, N. Semyonov, Olga Petrova-Zvant...</td>
+      <td>First film ever that was shot by two cameras. ...</td>
+      <td>6.0</td>
+      <td>130</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>38007</th>
+      <td>tt0266688</td>
+      <td>Karadjordje</td>
+      <td>Karadjordje</td>
+      <td>1911</td>
+      <td>1911</td>
+      <td>Drama, War</td>
+      <td>80</td>
+      <td>Serbia</td>
+      <td>Serbian</td>
+      <td>Ilija Stanojevic-Cica</td>
+      <td>...</td>
+      <td>Jovan Antonijevic-Djedo, Teodora Arsenovic, Vi...</td>
+      <td>This is the oldest found dramatic film from Se...</td>
+      <td>6.3</td>
+      <td>145</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>tt0002130</td>
+      <td>L'Inferno</td>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>1911-03-06</td>
+      <td>Adventure, Drama, Fantasy</td>
+      <td>68</td>
+      <td>Italy</td>
+      <td>Italian</td>
+      <td>Francesco Bertolini, Adolfo Padovan</td>
+      <td>...</td>
+      <td>Salvatore Papa, Arturo Pirovano, Giuseppe de L...</td>
+      <td>Loosely adapted from Dante's Divine Comedy and...</td>
+      <td>7.0</td>
+      <td>2019</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>28.0</td>
+      <td>14.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Basic-Statistics">
+<a class="anchor" href="#Basic-Statistics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Statistics<a class="anchor-link" href="#Basic-Statistics"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the number of values using the <b>.count(..)</b> method.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>81273</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the maximum value in a column using the <b>.max(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2019</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the minimum value in a column using the <b>.min(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1906</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the mean of all values in a column using <b>.mean(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1993.0072102666322</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the median of all values in a column using <b>.median(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2002.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the standard deviation of all values in a column using <b>.std(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>23.992283867737942</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get the variance of all values in a column using <b>.var(..)</b>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>575.6296851901183</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get a statistical summary of the dataframe by using the <b>.describe(..)</b> method below. Only columns with numerical values will be analysed by default.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>duration</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>81273.000000</td>
+      <td>81273.000000</td>
+      <td>81273.000000</td>
+      <td>8.127300e+04</td>
+      <td>12722.000000</td>
+      <td>74196.000000</td>
+      <td>70286.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1993.007210</td>
+      <td>100.565981</td>
+      <td>5.926587</td>
+      <td>9.421771e+03</td>
+      <td>55.762695</td>
+      <td>43.753194</td>
+      <td>27.992758</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>23.992284</td>
+      <td>25.320189</td>
+      <td>1.243315</td>
+      <td>5.220245e+04</td>
+      <td>17.757453</td>
+      <td>159.903568</td>
+      <td>58.708764</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1906.000000</td>
+      <td>40.000000</td>
+      <td>1.000000</td>
+      <td>9.900000e+01</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1979.000000</td>
+      <td>88.000000</td>
+      <td>5.200000</td>
+      <td>2.060000e+02</td>
+      <td>43.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2002.000000</td>
+      <td>96.000000</td>
+      <td>6.100000</td>
+      <td>4.950000e+02</td>
+      <td>56.000000</td>
+      <td>9.000000</td>
+      <td>8.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2012.000000</td>
+      <td>108.000000</td>
+      <td>6.800000</td>
+      <td>1.865000e+03</td>
+      <td>69.000000</td>
+      <td>26.000000</td>
+      <td>24.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2019.000000</td>
+      <td>3360.000000</td>
+      <td>10.000000</td>
+      <td>2.159628e+06</td>
+      <td>100.000000</td>
+      <td>8302.000000</td>
+      <td>987.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you pass in the <b>include = 'all'</b> argument to <b>.describe(..)</b> categorical and numerical statistics are returned.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">'all'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>81273</td>
+      <td>81273</td>
+      <td>81273</td>
+      <td>81273.000000</td>
+      <td>81273</td>
+      <td>81273</td>
+      <td>81273.000000</td>
+      <td>81234</td>
+      <td>80518</td>
+      <td>81200</td>
+      <td>...</td>
+      <td>81207</td>
+      <td>78843</td>
+      <td>81273.000000</td>
+      <td>8.127300e+04</td>
+      <td>22804</td>
+      <td>15094</td>
+      <td>29892</td>
+      <td>12722.000000</td>
+      <td>74196.000000</td>
+      <td>70286.000000</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>81273</td>
+      <td>76618</td>
+      <td>76631</td>
+      <td>NaN</td>
+      <td>21087</td>
+      <td>1264</td>
+      <td>NaN</td>
+      <td>4632</td>
+      <td>4251</td>
+      <td>32544</td>
+      <td>...</td>
+      <td>81159</td>
+      <td>78727</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4425</td>
+      <td>14648</td>
+      <td>29378</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>tt0116635</td>
+      <td>Anna</td>
+      <td>Anna</td>
+      <td>NaN</td>
+      <td>2010</td>
+      <td>Drama</td>
+      <td>NaN</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Michael Curtiz</td>
+      <td>...</td>
+      <td>Nobuyo Ôyama, Noriko Ohara, Michiko Nomura, Ka...</td>
+      <td>The story of</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>$ 1000000</td>
+      <td>$ 1000000</td>
+      <td>$ 8144</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1</td>
+      <td>9</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>111</td>
+      <td>11809</td>
+      <td>NaN</td>
+      <td>27490</td>
+      <td>34519</td>
+      <td>86</td>
+      <td>...</td>
+      <td>13</td>
+      <td>11</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>731</td>
+      <td>19</td>
+      <td>16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1993.007210</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>100.565981</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.926587</td>
+      <td>9.421771e+03</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>55.762695</td>
+      <td>43.753194</td>
+      <td>27.992758</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>23.992284</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>25.320189</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.243315</td>
+      <td>5.220245e+04</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17.757453</td>
+      <td>159.903568</td>
+      <td>58.708764</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1906.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>40.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.000000</td>
+      <td>9.900000e+01</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1979.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>88.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.200000</td>
+      <td>2.060000e+02</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>43.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2002.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>96.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.100000</td>
+      <td>4.950000e+02</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>56.000000</td>
+      <td>9.000000</td>
+      <td>8.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2012.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>108.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.800000</td>
+      <td>1.865000e+03</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>69.000000</td>
+      <td>26.000000</td>
+      <td>24.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2019.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3360.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.000000</td>
+      <td>2.159628e+06</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>100.000000</td>
+      <td>8302.000000</td>
+      <td>987.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>11 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Subsetting-a-Dataframe">
+<a class="anchor" href="#Subsetting-a-Dataframe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Subsetting a Dataframe<a class="anchor-link" href="#Subsetting-a-Dataframe"> </a>
+</h1>
+<p>You can select a single column by simply typing the name of the column after the dataframe name, separated by a fullstop. A single column is returned as a Series datatype.</p>
+<p>Note: This only works if the column name does not contain spaces.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">year</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1906
+1        1911
+2        1912
+3        1911
+4        1912
+         ... 
+81268    2019
+81269    2019
+81270    2019
+81271    2019
+81272    2019
+Name: year, Length: 81273, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Second method for selecting a single column. This method works even if the column name contains spaces.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1906
+1        1911
+2        1912
+3        1911
+4        1912
+         ... 
+81268    2019
+81269    2019
+81270    2019
+81271    2019
+81272    2019
+Name: year, Length: 81273, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select multiple columns by passing the column names as a list [..] into the dataframe brackets. This is why there are two square brackets.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'votes'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can use an equal sign to assign a subset of a dataframe to a new dataframe. This is often used if you want to manipulate a dataframe line by line, which can make it more readable for yourself and others.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'votes'</span><span class="p">]]</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can rename column names by passing in a list of new names using the <b>.columns</b> method.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'title_new'</span><span class="p">,</span><span class="s1">'year_new'</span><span class="p">,</span><span class="s1">'votes_new'</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title_new</th>
+      <th>year_new</th>
+      <th>votes_new</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Rename column names back to their oringinal names.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'year'</span><span class="p">,</span><span class="s1">'votes'</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 3 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also change column or index names using the <b>.rename(..)</b> method. Since a key/value pair  is used, we pass in a python dictionary, which takes the forma <b>{ 'key' : 'value' }</b>.</p>
+<p>Note: A python dictionary uses curly brackets, while a list uses square brackets.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'title'</span><span class="p">:</span> <span class="s1">'movie_name'</span><span class="p">})</span> 
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_name</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's change the column name back to 'title' and proceed.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'movie_name'</span><span class="p">:</span> <span class="s1">'title'</span><span class="p">})</span> 
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Subsetting-a-Dataframe-using-.iloc[...]">
+<a class="anchor" href="#Subsetting-a-Dataframe-using-.iloc%5B...%5D" aria-hidden="true"><span class="octicon octicon-link"></span></a>Subsetting a Dataframe using .iloc[...]<a class="anchor-link" href="#Subsetting-a-Dataframe-using-.iloc%5B...%5D"> </a>
+</h2>
+<p>You can select a value from a column using the <b>.iloc[..]</b> method.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>'Cleopatra'</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can select an complete row from a dataframe using the following.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>title    Cleopatra
+year          1912
+votes          420
+Name: 2, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select multiple values from a column using the following.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0                          The Story of the Kelly Gang
+1                                       Den sorte drøm
+2                                            Cleopatra
+3                                            L'Inferno
+4    From the Manger to the Cross; or, Jesus of Naz...
+Name: title, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use negitive indexing to select multiple values at the end of a column.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>81270                    Pengalila
+81271    Padmavyuhathile Abhimanyu
+81272            Sokagin Çocuklari
+Name: title, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use negitive indexing to select multiple rows at the end of a dataframe.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select a single column from a dataframe using its index. In this case by selecting the first column which is 'year'.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1906
+1        1911
+2        1912
+3        1911
+4        1912
+         ... 
+81268    2019
+81269    2019
+81270    2019
+81271    2019
+81272    2019
+Name: year, Length: 81273, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select multiple columns from a dataframe using column indexing.</p>
+<p>Note: As with python subsetting the first number is included, but the last number is excluded. So only columns 0 and 1 are selected.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>Jessie</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>Ottam</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select multiple rows from a dataframe using row indexes.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>438</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Select a single cell using row and column indexes.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1912</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Subsetting-using-.loc[..]">
+<a class="anchor" href="#Subsetting-using-.loc%5B..%5D" aria-hidden="true"><span class="octicon octicon-link"></span></a>Subsetting using .loc[..]<a class="anchor-link" href="#Subsetting-using-.loc%5B..%5D"> </a>
+</h2>
+<p>You can subset a dataframe using column and index names by using the <b>.loc[..]</b> method. In the example, one column is subset using the column name.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0                              The Story of the Kelly Gang
+1                                           Den sorte drøm
+2                                                Cleopatra
+3                                                L'Inferno
+4        From the Manger to the Cross; or, Jesus of Naz...
+                               ...                        
+81268                                               Jessie
+81269                                                Ottam
+81270                                            Pengalila
+81271                            Padmavyuhathile Abhimanyu
+81272                                    Sokagin Çocuklari
+Name: title, Length: 81273, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reimporting the full dataframe from the CSV file.</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'IMDb movies.csv'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Below all columns between 'title' and 'genre' are selected.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">:</span><span class="s1">'genre'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>1911-03-06</td>
+      <td>Adventure, Drama, Fantasy</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>1913</td>
+      <td>Biography, Drama</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>Jessie</td>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Horror, Thriller</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>Ottam</td>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>Pengalila</td>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>Sokagin Çocuklari</td>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Drama, Family</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 5 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s1">'title'</span><span class="p">:</span><span class="s1">'genre'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L'Inferno</td>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>1911-03-06</td>
+      <td>Adventure, Drama, Fantasy</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Manipulating-dataframe-values">
+<a class="anchor" href="#Manipulating-dataframe-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manipulating dataframe values<a class="anchor-link" href="#Manipulating-dataframe-values"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reimporting the full dataframe from the CSV file.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'IMDb movies.csv'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Removing-rows-and-columns-with-null-values">
+<a class="anchor" href="#Removing-rows-and-columns-with-null-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Removing rows and columns with null values<a class="anchor-link" href="#Removing-rows-and-columns-with-null-values"> </a>
+</h2>
+<p>Remove all rows with null (NAN) values using the <b>.dropna(..)</b> method.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>488</th>
+      <td>tt0017136</td>
+      <td>Metropolis</td>
+      <td>Metropolis</td>
+      <td>1927</td>
+      <td>1927-02-06</td>
+      <td>Drama, Sci-Fi</td>
+      <td>153</td>
+      <td>Germany</td>
+      <td>German</td>
+      <td>Fritz Lang</td>
+      <td>...</td>
+      <td>Alfred Abel, Gustav Fröhlich, Rudolf Klein-Rog...</td>
+      <td>In a futuristic city sharply divided between t...</td>
+      <td>8.3</td>
+      <td>148396</td>
+      <td>DEM 6000000</td>
+      <td>$ 1236166</td>
+      <td>$ 1349711</td>
+      <td>98.0</td>
+      <td>471.0</td>
+      <td>194.0</td>
+    </tr>
+    <tr>
+      <th>1005</th>
+      <td>tt0021749</td>
+      <td>City Lights</td>
+      <td>City Lights</td>
+      <td>1931</td>
+      <td>1931-08-21</td>
+      <td>Comedy, Drama, Romance</td>
+      <td>87</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles Chaplin</td>
+      <td>...</td>
+      <td>Virginia Cherrill, Florence Lee, Harry Myers, ...</td>
+      <td>With the aid of a wealthy erratic tippler, a d...</td>
+      <td>8.5</td>
+      <td>152716</td>
+      <td>$ 1500000</td>
+      <td>$ 19181</td>
+      <td>$ 32609</td>
+      <td>99.0</td>
+      <td>270.0</td>
+      <td>120.0</td>
+    </tr>
+    <tr>
+      <th>2336</th>
+      <td>tt0027977</td>
+      <td>Modern Times</td>
+      <td>Modern Times</td>
+      <td>1936</td>
+      <td>1936-10-16</td>
+      <td>Comedy, Drama, Family</td>
+      <td>87</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles Chaplin</td>
+      <td>...</td>
+      <td>Charles Chaplin, Paulette Goddard, Henry Bergm...</td>
+      <td>The Tramp struggles to live in modern industri...</td>
+      <td>8.5</td>
+      <td>197969</td>
+      <td>$ 1500000</td>
+      <td>$ 163577</td>
+      <td>$ 445226</td>
+      <td>96.0</td>
+      <td>262.0</td>
+      <td>146.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Drop all columns with missing values by passing in the <b>axis = 'columns'</b> argument.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="s1">'columns'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>6.1</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>5.9</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>5.2</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>tt0002130</td>
+      <td>L'Inferno</td>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>1911-03-06</td>
+      <td>Adventure, Drama, Fantasy</td>
+      <td>68</td>
+      <td>7.0</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>tt0002199</td>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>1913</td>
+      <td>Biography, Drama</td>
+      <td>60</td>
+      <td>5.7</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>tt9903716</td>
+      <td>Jessie</td>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Horror, Thriller</td>
+      <td>106</td>
+      <td>7.2</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>tt9905412</td>
+      <td>Ottam</td>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>120</td>
+      <td>7.8</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>tt9905462</td>
+      <td>Pengalila</td>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>111</td>
+      <td>8.4</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>tt9911774</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>130</td>
+      <td>8.4</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>tt9914286</td>
+      <td>Sokagin Çocuklari</td>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Drama, Family</td>
+      <td>98</td>
+      <td>7.2</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Drop missing values from specified columns using the <b>subset</b> argument.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'metascore'</span><span class="p">,</span><span class="s1">'budget'</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>73</th>
+      <td>tt0006864</td>
+      <td>Intolerance: Love's Struggle Throughout the Ages</td>
+      <td>Intolerance: Love's Struggle Throughout the Ages</td>
+      <td>1916</td>
+      <td>1918-02-24</td>
+      <td>Drama, History</td>
+      <td>163</td>
+      <td>USA</td>
+      <td>NaN</td>
+      <td>D.W. Griffith</td>
+      <td>...</td>
+      <td>Lillian Gish, Mae Marsh, Robert Harron, F.A. T...</td>
+      <td>The story of a poor young woman, separated by ...</td>
+      <td>7.8</td>
+      <td>13116</td>
+      <td>$ 385907</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>93.0</td>
+      <td>105.0</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>488</th>
+      <td>tt0017136</td>
+      <td>Metropolis</td>
+      <td>Metropolis</td>
+      <td>1927</td>
+      <td>1927-02-06</td>
+      <td>Drama, Sci-Fi</td>
+      <td>153</td>
+      <td>Germany</td>
+      <td>German</td>
+      <td>Fritz Lang</td>
+      <td>...</td>
+      <td>Alfred Abel, Gustav Fröhlich, Rudolf Klein-Rog...</td>
+      <td>In a futuristic city sharply divided between t...</td>
+      <td>8.3</td>
+      <td>148396</td>
+      <td>DEM 6000000</td>
+      <td>$ 1236166</td>
+      <td>$ 1349711</td>
+      <td>98.0</td>
+      <td>471.0</td>
+      <td>194.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can pass the <b>inplace</b> argument into many methods. This will change the dataframe without it needing to be reassigned using the equal sign.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'columns'</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>6.1</td>
+      <td>537</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>5.9</td>
+      <td>171</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>5.2</td>
+      <td>420</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>tt0002130</td>
+      <td>L'Inferno</td>
+      <td>L'Inferno</td>
+      <td>1911</td>
+      <td>1911-03-06</td>
+      <td>Adventure, Drama, Fantasy</td>
+      <td>68</td>
+      <td>7.0</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>tt0002199</td>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>From the Manger to the Cross; or, Jesus of Naz...</td>
+      <td>1912</td>
+      <td>1913</td>
+      <td>Biography, Drama</td>
+      <td>60</td>
+      <td>5.7</td>
+      <td>438</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>81268</th>
+      <td>tt9903716</td>
+      <td>Jessie</td>
+      <td>Jessie</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Horror, Thriller</td>
+      <td>106</td>
+      <td>7.2</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <th>81269</th>
+      <td>tt9905412</td>
+      <td>Ottam</td>
+      <td>Ottam</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>120</td>
+      <td>7.8</td>
+      <td>510</td>
+    </tr>
+    <tr>
+      <th>81270</th>
+      <td>tt9905462</td>
+      <td>Pengalila</td>
+      <td>Pengalila</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>111</td>
+      <td>8.4</td>
+      <td>604</td>
+    </tr>
+    <tr>
+      <th>81271</th>
+      <td>tt9911774</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>Padmavyuhathile Abhimanyu</td>
+      <td>2019</td>
+      <td>2019-03-08</td>
+      <td>Drama</td>
+      <td>130</td>
+      <td>8.4</td>
+      <td>369</td>
+    </tr>
+    <tr>
+      <th>81272</th>
+      <td>tt9914286</td>
+      <td>Sokagin Çocuklari</td>
+      <td>Sokagin Çocuklari</td>
+      <td>2019</td>
+      <td>2019-03-15</td>
+      <td>Drama, Family</td>
+      <td>98</td>
+      <td>7.2</td>
+      <td>190</td>
+    </tr>
+  </tbody>
+</table>
+<p>81273 rows × 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Reimporting the full dataframe from the CSV file.</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'IMDb movies.csv'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Replacing-null-values">
+<a class="anchor" href="#Replacing-null-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Replacing null values<a class="anchor-link" href="#Replacing-null-values"> </a>
+</h2>
+<p>The <b>.fillna(..)</b> method allows you to fill a null value with a value of your choice. In the example below we fill null values with <b>0</b>.</p>
+<p>We also use the <b>inplace = True</b> argument to change the dataframe without having to reassign it to df.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'budget'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>imdb_title_id</th>
+      <th>title</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>country</th>
+      <th>language</th>
+      <th>director</th>
+      <th>...</th>
+      <th>actors</th>
+      <th>description</th>
+      <th>avg_vote</th>
+      <th>votes</th>
+      <th>budget</th>
+      <th>usa_gross_income</th>
+      <th>worlwide_gross_income</th>
+      <th>metascore</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>tt0000574</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>The Story of the Kelly Gang</td>
+      <td>1906</td>
+      <td>1906-12-26</td>
+      <td>Biography, Crime, Drama</td>
+      <td>70</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>Charles Tait</td>
+      <td>...</td>
+      <td>Elizabeth Tait, John Tait, Norman Campbell, Be...</td>
+      <td>True story of notorious Australian outlaw Ned ...</td>
+      <td>6.1</td>
+      <td>537</td>
+      <td>$ 2250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>tt0001892</td>
+      <td>Den sorte drøm</td>
+      <td>Den sorte drøm</td>
+      <td>1911</td>
+      <td>1911-08-19</td>
+      <td>Drama</td>
+      <td>53</td>
+      <td>Germany, Denmark</td>
+      <td>NaN</td>
+      <td>Urban Gad</td>
+      <td>...</td>
+      <td>Asta Nielsen, Valdemar Psilander, Gunnar Helse...</td>
+      <td>Two men of high rank are both wooing the beaut...</td>
+      <td>5.9</td>
+      <td>171</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tt0002101</td>
+      <td>Cleopatra</td>
+      <td>Cleopatra</td>
+      <td>1912</td>
+      <td>1912-11-13</td>
+      <td>Drama, History</td>
+      <td>100</td>
+      <td>USA</td>
+      <td>English</td>
+      <td>Charles L. Gaskill</td>
+      <td>...</td>
+      <td>Helen Gardner, Pearl Sindelar, Miss Fielding, ...</td>
+      <td>The fabled queen of Egypt's affair with Roman ...</td>
+      <td>5.2</td>
+      <td>420</td>
+      <td>$ 45000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 22 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You will now see some more useful methods for quickly changing values in a dataframe. But first we will create a new column based on divided the <b>avg_vote</b> by the number of <b>votes</b> per moview. We'll call the column <b>avg_votes_div_votes</b>. We will also multiply by 100 to make the numbers more interesting to play around with.</p>
+<p>Note: the new column is appending to the most right position in the dataframe.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_vote'</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1.135940
+1        3.450292
+2        1.238095
+3        0.346706
+4        1.301370
+           ...   
+81268    3.287671
+81269    1.529412
+81270    1.390728
+81271    2.276423
+81272    3.789474
+Name: avg_votes_div_votes, Length: 81273, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Rounding-values">
+<a class="anchor" href="#Rounding-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rounding values<a class="anchor-link" href="#Rounding-values"> </a>
+</h2>
+<p>Now you will learn how to use the <b>.round(..)</b> method to round the new column values to a specified decimal place. In this case we will round it to 2 decimal places by passing 2 in as an argument.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1.136
+1        3.450
+2        1.238
+3        0.347
+4        1.301
+         ...  
+81268    3.288
+81269    1.529
+81270    1.391
+81271    2.276
+81272    3.789
+Name: avg_votes_div_votes, Length: 81273, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Changing-data-types">
+<a class="anchor" href="#Changing-data-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changing data types<a class="anchor-link" href="#Changing-data-types"> </a>
+</h2>
+<p>We can also change the type of data to decimals <b>(float)</b>, integers <b>(int)</b>, text strings <b>(str)</b>, and boolean True/False <b>(bool)</b> by passing these valus into the  <b>.astype(..)</b> method. In the example below we will covert the float value to an integer as follows. Integers do not support decimal places so all decimals will be removed.</p>
+<p>Note: This does not act the same way as round. For example, if you round 1.8, it will be rounded up to 2. However, if you convert 1.8 to an integer the .8 will be removed ao it will become simply 1 instead.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1
+1        3
+2        1
+3        0
+4        1
+        ..
+81268    3
+81269    1
+81270    1
+81271    2
+81272    3
+Name: avg_votes_div_votes, Length: 81273, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's convert it to a text string. Once a text string it will not be possible to perform mathematical operations on the values.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        1.1359404096834265
+1        3.4502923976608186
+2        1.2380952380952381
+3        0.3467062902426944
+4        1.3013698630136987
+                ...        
+81268    3.2876712328767126
+81269    1.5294117647058822
+81270    1.3907284768211923
+81271    2.2764227642276422
+81272    3.7894736842105265
+Name: avg_votes_div_votes, Length: 81273, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>we can check that this values are actually strings and not numbers by using the <b>type(..)</b> function. We will check the first value by indexing it as follows.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>'1.1359404096834265'</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once indexed we apply the <b>type(..)</b> function.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>str</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, we will wrap up the lesson by using the <b>.replace(..)</b> method to replace the values in the text with other values. Specifically, we will replace the number values to their english equivalents e.g. '1' with 'one'.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'1'</span><span class="p">,</span><span class="s1">'o'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        o.o359404096834265
+1        3.4502923976608o86
+2        o.238095238095238o
+3        0.3467062902426944
+4        o.30o3698630o36987
+                ...        
+81268    3.28767o2328767o26
+81269    o.5294oo7647058822
+81270    o.39072847682oo923
+81271    2.2764227642276422
+81272    3.7894736842o05265
+Name: avg_votes_div_votes, Length: 81273, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's replace multiple values. This time each number with the first letter of its english equivalent. e.g. '2' with 't', and '5' with 'f'.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_votes_div_votes'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'1'</span><span class="p">:</span><span class="s1">'o'</span><span class="p">,</span><span class="s1">'2'</span><span class="p">:</span><span class="s1">'t'</span><span class="p">,</span><span class="s1">'3'</span><span class="p">:</span><span class="s1">'t'</span><span class="p">,</span><span class="s1">'4'</span><span class="p">:</span><span class="s1">'f'</span><span class="p">,</span><span class="s1">'5'</span><span class="p">:</span><span class="s1">'f'</span><span class="p">,</span><span class="s1">'6'</span><span class="p">:</span><span class="s1">'s'</span><span class="p">,</span><span class="s1">'7'</span><span class="p">:</span><span class="s1">'s'</span><span class="p">,</span><span class="s1">'8'</span><span class="p">:</span><span class="s1">'e'</span><span class="p">,</span><span class="s1">'9'</span><span class="p">:</span><span class="s1">'n'</span><span class="p">,</span><span class="s1">'0'</span><span class="p">:</span><span class="s1">'z'</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        o.otfnfzfznsetftsf
+1        t.ffztnttnssszeoes
+2        o.tteznftteznftteo
+3        z.tfsszstnztftsnff
+4        o.tzotsnestzotsnes
+                ...        
+81268    t.tesssotttesssots
+81269    o.ftnfoossfszfeett
+81270    o.tnzstefssetoontt
+81271    t.tssfttssfttssftt
+81272    t.senfstseftozftsf
+Name: avg_votes_div_votes, Length: 81273, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Acknowledgements:">
+<a class="anchor" href="#Acknowledgements:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements:<a class="anchor-link" href="#Acknowledgements:"> </a>
+</h1>
+<p>I'd like to acknowledge the following sources provided inspiration for the examples in this blog post.</p>
+<ul>
+<li><a href="https://github.com/brandon-rhodes/pycon-pandas-tutorial">Pandas Tutorial, Pycon 2015, Brandon Rhodes</a></li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html">10 minutes to Pandas, Pandas development team</a></li>
+<li><a href="https://www.dataquest.io/blog/pandas-cheat-sheet/">Pandas cheat Sheet, Dataquest</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Sams101/DataScience"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/DataScience/pandas/python/basics/2020/06/07/Pandas-Basics.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/DataScience/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/DataScience/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/DataScience/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A place to maintain Data Science and Machine learning projects</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
