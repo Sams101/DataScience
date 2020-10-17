@@ -10,13 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-10-12T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-10-16T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Keras RNN - Sine Wave","dateModified":"2020-10-12T00:00:00-05:00","datePublished":"2020-10-12T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Keras RNN - Sine Wave","dateModified":"2020-10-16T00:00:00-05:00","datePublished":"2020-10-16T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Keras RNN - Sine Wave | DS Unplugged</title>
@@ -26,13 +26,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-10-12T00:00:00-05:00" />
+<meta property="article:published_time" content="2020-10-16T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Keras RNN - Sine Wave","dateModified":"2020-10-12T00:00:00-05:00","datePublished":"2020-10-12T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Keras RNN - Sine Wave","dateModified":"2020-10-16T00:00:00-05:00","datePublished":"2020-10-16T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -87,8 +87,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Keras RNN - Sine Wave</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-12T00:00:00-05:00" itemprop="datePublished">
-        Oct 12, 2020
+    <h1 class="post-title p-name" itemprop="name headline">Keras RNN - Sine Wave</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-16T00:00:00-05:00" itemprop="datePublished">
+        Oct 16, 2020
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
@@ -2439,7 +2439,7 @@ Epoch 6/6
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/12/Keras_RNN_Sine.html" hidden></a>
+</script><a class="u-url" href="/DataScience/keras/rnn/tensorflow/time_series/python/2020/10/16/Keras_RNN_Sine.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
