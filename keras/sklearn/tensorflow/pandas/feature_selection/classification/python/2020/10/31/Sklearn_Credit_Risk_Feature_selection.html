@@ -10,13 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-31T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn Credit Risk - Feature Selection ExtraTrees","dateModified":"2020-10-31T00:00:00-05:00","datePublished":"2020-10-31T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn Credit Risk - Feature Selection ExtraTrees","dateModified":"2020-10-31T00:00:00-05:00","datePublished":"2020-10-31T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Sklearn Credit Risk - Feature Selection ExtraTrees | DS Unplugged</title>
@@ -26,13 +26,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
-<link rel="canonical" href="https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
-<meta property="og:url" content="https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" />
 <meta property="og:site_name" content="DS Unplugged" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-31T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn Credit Risk - Feature Selection ExtraTrees","dateModified":"2020-10-31T00:00:00-05:00","datePublished":"2020-10-31T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn Credit Risk - Feature Selection ExtraTrees","dateModified":"2020-10-31T00:00:00-05:00","datePublished":"2020-10-31T00:00:00-05:00","url":"https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -102,10 +102,16 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="/DataScience/categories/#Keras">Keras</a>
+        <a class="category-tags-link" href="/DataScience/categories/#keras">keras</a>
         &nbsp;
       
-        <a class="category-tags-link" href="/DataScience/categories/#Tensorflow">Tensorflow</a>
+        <a class="category-tags-link" href="/DataScience/categories/#sklearn">sklearn</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#tensorflow">tensorflow</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#pandas">pandas</a>
         &nbsp;
       
         <a class="category-tags-link" href="/DataScience/categories/#feature_selection">feature_selection</a>
@@ -127,7 +133,6 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#Feature-Cleaning-and-Engineering">Feature Cleaning and Engineering </a></li>
 <li class="toc-entry toc-h1"><a href="#Define-Target-and-Features">Define Target and Features </a></li>
-<li class="toc-entry toc-h1"><a href="#Balance-Target-values">Balance Target values </a></li>
 <li class="toc-entry toc-h1"><a href="#Feature-Importance">Feature Importance </a></li>
 <li class="toc-entry toc-h1"><a href="#Define-ANN-Model">Define ANN Model </a></li>
 <li class="toc-entry toc-h1"><a href="#Early-Stopping">Early Stopping </a></li>
@@ -227,7 +232,9 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'member_id'</span><span class="p">,</span><span class="s1">'pymnt_plan'</span><span class="p">,</span><span class="s1">'mths_since_last_major_derog'</span><span class="p">,</span><span class="s1">'mths_since_last_record'</span><span class="p">,</span><span class="s1">'verification_status_joint'</span><span class="p">,</span><span class="s1">'desc'</span><span class="p">,</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'batch_enrolled'</span><span class="p">,</span><span class="s1">'emp_title'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'member_id'</span><span class="p">,</span><span class="s1">'pymnt_plan'</span><span class="p">,</span><span class="s1">'mths_since_last_major_derog'</span><span class="p">,</span>
+                     <span class="s1">'mths_since_last_record'</span><span class="p">,</span><span class="s1">'verification_status_joint'</span><span class="p">,</span>
+                     <span class="s1">'desc'</span><span class="p">,</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'batch_enrolled'</span><span class="p">,</span><span class="s1">'emp_title'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -396,52 +403,6 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Balance-Target-values">
-<a class="anchor" href="#Balance-Target-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Balance Target values<a class="anchor-link" href="#Balance-Target-values"> </a>
-</h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">resample</span>
-
-<span class="n">test</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="n">resample</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">stratify</span><span class="o">=</span><span class="n">test</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[1, 1, 1, 1, 0]</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -1113,7 +1074,7 @@ weighted avg       0.86      0.86      0.86     12800
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/DataScience/keras/tensorflow/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" hidden></a>
+</script><a class="u-url" href="/DataScience/keras/sklearn/tensorflow/pandas/feature_selection/classification/python/2020/10/31/Sklearn_Credit_Risk_Feature_selection.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
