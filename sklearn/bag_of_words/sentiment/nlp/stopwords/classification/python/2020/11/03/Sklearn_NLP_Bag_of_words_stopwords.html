@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sklearn NLP - Bag of Words - Remove Stop Words | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sklearn NLP - Bag of Words - Remove Stop Words" />
+<meta name="author" content="Sam Treacy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-03T00:00:00-06:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn NLP - Bag of Words - Remove Stop Words","dateModified":"2020-11-03T00:00:00-06:00","datePublished":"2020-11-03T00:00:00-06:00","url":"https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sklearn NLP - Bag of Words - Remove Stop Words | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sklearn NLP - Bag of Words - Remove Stop Words" />
+<meta name="author" content="Sam Treacy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-03T00:00:00-06:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn NLP - Bag of Words - Remove Stop Words","dateModified":"2020-11-03T00:00:00-06:00","datePublished":"2020-11-03T00:00:00-06:00","url":"https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/DataScience/">DS Unplugged</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/DataScience/about/">About Me</a><a class="page-link" href="/DataScience/search/">Search</a><a class="page-link" href="/DataScience/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Sklearn NLP - Bag of Words - Remove Stop Words</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-03T00:00:00-06:00" itemprop="datePublished">
+        Nov 3, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/DataScience/categories/#sklearn">sklearn</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#bag_of_words">bag_of_words</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#sentiment">sentiment</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#nlp">nlp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#stopwords">stopwords</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#classification">classification</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/DataScience/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Create-sentiment-Feature">Create sentiment Feature </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Cleaning">Data Cleaning </a></li>
+<li class="toc-entry toc-h2"><a href="#Remove-Stop-words">Remove Stop words </a></li>
+<li class="toc-entry toc-h2"><a href="#Define-Target-and-Features">Define Target and Features </a></li>
+<li class="toc-entry toc-h2"><a href="#Create-bag-of-words">Create bag of words </a></li>
+<li class="toc-entry toc-h2"><a href="#Build-Model">Build Model </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-11-03-Sklearn_NLP_Bag_of_words_stopwords.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'DATA/Amazon_Fine_Food_Reviews.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>ProductId</th>
+      <th>UserId</th>
+      <th>ProfileName</th>
+      <th>HelpfulnessNumerator</th>
+      <th>HelpfulnessDenominator</th>
+      <th>Score</th>
+      <th>Time</th>
+      <th>Summary</th>
+      <th>Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>B001E4KFG0</td>
+      <td>A3SGXH7AUHU8GW</td>
+      <td>delmartian</td>
+      <td>1</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1303862400</td>
+      <td>Good Quality Dog Food</td>
+      <td>I have bought several of the Vitality canned d...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>B00813GRG4</td>
+      <td>A1D87F6ZCVE5NK</td>
+      <td>dll pa</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1346976000</td>
+      <td>Not as Advertised</td>
+      <td>Product arrived labeled as Jumbo Salted Peanut...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>B000LQOCH0</td>
+      <td>ABXLMWJIXXAIN</td>
+      <td>Natalia Corres "Natalia Corres"</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1219017600</td>
+      <td>"Delight" says it all</td>
+      <td>This is a confection that has been around a fe...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Score</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Product Score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Count'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0, 0.5, 'Count')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Create-sentiment-Feature">
+<a class="anchor" href="#Create-sentiment-Feature" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create sentiment Feature<a class="anchor-link" href="#Create-sentiment-Feature"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove Score = 3</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Score'</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">]</span>
+
+
+<span class="c1"># Positive = Score &gt; 3, Negative = Score &lt; 3</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'sentiment'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Score'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">rating</span><span class="p">:</span> <span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">rating</span> <span class="o">&gt;</span><span class="mi">3</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">'Score'</span><span class="p">,</span> <span class="s1">'sentiment'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Score</th>
+      <th>sentiment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Cleaning">
+<a class="anchor" href="#Data-Cleaning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Cleaning<a class="anchor-link" href="#Data-Cleaning"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_punctuation</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'?'</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span><span class="s1">','</span><span class="p">,</span> 
+                                                 <span class="s1">';'</span><span class="p">,</span><span class="s1">'...'</span><span class="p">,</span> <span class="s1">':'</span><span class="p">,</span><span class="s1">'-'</span><span class="p">,</span><span class="s1">'!'</span><span class="p">,</span><span class="s1">'"'</span><span class="p">,</span><span class="s2">"'"</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cleaned</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_punctuation</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">49</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0                                 good quality dog food
+1                                     not as advertised
+2                                   delight says it all
+3                                        cough medicine
+4                                           great taffy
+5                                            nice taffy
+6           great  just as good as the expensive brands
+7                                 wonderful tasty taffy
+8                                            yay barley
+9                                      healthy dog food
+10                      the best hot sauce in the world
+11    my cats love this diet food better than their ...
+12                 my cats are not fans of the new food
+13                                     fresh and greasy
+14                          strawberry twizzlers  yummy
+15               lots of twizzlers just what you expect
+16                                           poor taste
+17                                              love it
+18                                    great sweet candy
+19                              home delivered twizlers
+20                                         always fresh
+21                                            twizzlers
+22                                    delicious product
+23                                            twizzlers
+24                          please sell these in mexico
+25                                twizzlers  strawberry
+26                                      nasty no flavor
+27                          great bargain for the price
+28                                                yummy
+29                      the best hot sauce in the world
+30                                        great machine
+31                                     this is my taste
+32                         best of the instant oatmeals
+33                                         good instant
+34             great irish oatmeal for those in a hurry
+35                                           satisfying
+36                             love gluten free oatmeal
+37                                          its oatmeal
+38                            good way to start the day
+39                             wifes favorite breakfast
+40    why wouldnt you buy oatmeal from mcanns tastes...
+41                           oatmeal for oatmeal lovers
+42                                            foodgreat
+43                                   good hot breakfast
+44                          great taste and convenience
+46                                                 good
+48    very good but next time i wont order the varie...
+50                                         dont like it
+51                 hot  and good  came back for more  )
+Name: Summary, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Remove-Stop-words">
+<a class="anchor" href="#Remove-Stop-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remove Stop words<a class="anchor-link" href="#Remove-Stop-words"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'stopwords'</span><span class="p">)</span>
+<span class="n">stopwords</span> <span class="o">=</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">'english'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package stopwords to
+[nltk_data]     /Users/samtreacy/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stopwords</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', "don't", 'should', "should've", 'now', 'd', 'll', 'm', 'o', 're', 've', 'y', 'ain', 'aren', "aren't", 'couldn', "couldn't", 'didn', "didn't", 'doesn', "doesn't", 'hadn', "hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span><span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0                       good quality dog food
+1                                  advertised
+2                                delight says
+3                              cough medicine
+4                                 great taffy
+5                                  nice taffy
+6                great  good expensive brands
+7                       wonderful tasty taffy
+8                                  yay barley
+9                            healthy dog food
+10                       best hot sauce world
+11    cats love diet food better regular food
+12                         cats fans new food
+13                               fresh greasy
+14                strawberry twizzlers  yummy
+15                      lots twizzlers expect
+16                                 poor taste
+17                                       love
+18                          great sweet candy
+19                    home delivered twizlers
+Name: Summary, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Define-Target-and-Features">
+<a class="anchor" href="#Define-Target-and-Features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Define Target and Features<a class="anchor-link" href="#Define-Target-and-Features"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'sentiment'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Summary'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>((420631,), (105158,), (420631,), (105158,))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Create-bag-of-words">
+<a class="anchor" href="#Create-bag-of-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create bag of words<a class="anchor-link" href="#Create-bag-of-words"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count vectorizer</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">token_pattern</span><span class="o">=</span><span class="sa">r</span><span class="s1">'\b\w+\b'</span><span class="p">)</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(420631, 35429)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Build-Model">
+<a class="anchor" href="#Build-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build Model<a class="anchor-link" href="#Build-Model"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from sklearn.linear_model import LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>building tree 1 of 100
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Done   1 out of   1 | elapsed:   33.3s remaining:    0.0s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>building tree 2 of 100
+building tree 3 of 100
+building tree 4 of 100
+building tree 5 of 100
+building tree 6 of 100
+building tree 7 of 100
+building tree 8 of 100
+building tree 9 of 100
+building tree 10 of 100
+building tree 11 of 100
+building tree 12 of 100
+building tree 13 of 100
+building tree 14 of 100
+building tree 15 of 100
+building tree 16 of 100
+building tree 17 of 100
+building tree 18 of 100
+building tree 19 of 100
+building tree 20 of 100
+building tree 21 of 100
+building tree 22 of 100
+building tree 23 of 100
+building tree 24 of 100
+building tree 25 of 100
+building tree 26 of 100
+building tree 27 of 100
+building tree 28 of 100
+building tree 29 of 100
+building tree 30 of 100
+building tree 31 of 100
+building tree 32 of 100
+building tree 33 of 100
+building tree 34 of 100
+building tree 35 of 100
+building tree 36 of 100
+building tree 37 of 100
+building tree 38 of 100
+building tree 39 of 100
+building tree 40 of 100
+building tree 41 of 100
+building tree 42 of 100
+building tree 43 of 100
+building tree 44 of 100
+building tree 45 of 100
+building tree 46 of 100
+building tree 47 of 100
+building tree 48 of 100
+building tree 49 of 100
+building tree 50 of 100
+building tree 51 of 100
+building tree 52 of 100
+building tree 53 of 100
+building tree 54 of 100
+building tree 55 of 100
+building tree 56 of 100
+building tree 57 of 100
+building tree 58 of 100
+building tree 59 of 100
+building tree 60 of 100
+building tree 61 of 100
+building tree 62 of 100
+building tree 63 of 100
+building tree 64 of 100
+building tree 65 of 100
+building tree 66 of 100
+building tree 67 of 100
+building tree 68 of 100
+building tree 69 of 100
+building tree 70 of 100
+building tree 71 of 100
+building tree 72 of 100
+building tree 73 of 100
+building tree 74 of 100
+building tree 75 of 100
+building tree 76 of 100
+building tree 77 of 100
+building tree 78 of 100
+building tree 79 of 100
+building tree 80 of 100
+building tree 81 of 100
+building tree 82 of 100
+building tree 83 of 100
+building tree 84 of 100
+building tree 85 of 100
+building tree 86 of 100
+building tree 87 of 100
+building tree 88 of 100
+building tree 89 of 100
+building tree 90 of 100
+building tree 91 of 100
+building tree 92 of 100
+building tree 93 of 100
+building tree 94 of 100
+building tree 95 of 100
+building tree 96 of 100
+building tree 97 of 100
+building tree 98 of 100
+building tree 99 of 100
+building tree 100 of 100
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Done 100 out of 100 | elapsed: 57.1min finished
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>RandomForestClassifier(verbose=2)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
+[Parallel(n_jobs=1)]: Done   1 out of   1 | elapsed:    0.6s remaining:    0.0s
+[Parallel(n_jobs=1)]: Done 100 out of 100 | elapsed:  1.1min finished
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Confusion Matrix'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              precision    recall  f1-score   support
+
+          -1       0.76      0.78      0.77     16233
+           1       0.96      0.95      0.96     88925
+
+    accuracy                           0.93    105158
+   macro avg       0.86      0.87      0.86    105158
+weighted avg       0.93      0.93      0.93    105158
+
+Confusion Matrix
+[[12726  3507]
+ [ 4093 84832]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Sams101/DataScience"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/DataScience/sklearn/bag_of_words/sentiment/nlp/stopwords/classification/python/2020/11/03/Sklearn_NLP_Bag_of_words_stopwords.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/DataScience/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/DataScience/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/DataScience/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A place to maintain Data Science and Machine learning projects</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
