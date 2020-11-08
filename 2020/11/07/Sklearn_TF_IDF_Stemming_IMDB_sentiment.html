@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-07T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews","dateModified":"2020-11-07T00:00:00-06:00","datePublished":"2020-11-07T00:00:00-06:00","url":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews | DS Unplugged</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A place to maintain Data Science and Machine learning projects" />
+<meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
+<link rel="canonical" href="https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" />
+<meta property="og:url" content="https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" />
+<meta property="og:site_name" content="DS Unplugged" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-07T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews","dateModified":"2020-11-07T00:00:00-06:00","datePublished":"2020-11-07T00:00:00-06:00","url":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/DataScience/">DS Unplugged</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/DataScience/about/">About Me</a><a class="page-link" href="/DataScience/search/">Search</a><a class="page-link" href="/DataScience/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-07T00:00:00-06:00" itemprop="datePublished">
+        Nov 7, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      10 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/Sams101/DataScience/tree/master/_notebooks/2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/DataScience/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Sams101/DataScience/master?filepath=_notebooks%2F2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/DataScience/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Sams101/DataScience/blob/master/_notebooks/2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/DataScience/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">-</span> <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;Deep learning: A tutorial&quot;</span>
+<span class="o">-</span> <span class="n">toc</span><span class="p">:</span> <span class="n">true</span>
+<span class="o">-</span> <span class="n">badges</span><span class="p">:</span> <span class="kc">False</span>
+<span class="o">-</span> <span class="n">comments</span><span class="p">:</span> <span class="n">true</span>
+<span class="o">-</span> <span class="n">author</span><span class="p">:</span> <span class="n">Sam</span> <span class="n">Treacy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;DATA/IMDB Dataset.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(50000, 2)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>review</th>
+      <th>sentiment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>One of the other reviewers has mentioned that ...</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A wonderful little production. &lt;br /&gt;&lt;br /&gt;The...</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>I thought this was a wonderful way to spend ti...</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Basically there's a family where a little boy ...</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Petter Mattei's "Love in the Time of Money" is...</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Probably my all-time favorite movie, a story o...</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>I sure would like to see a resurrection of a u...</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>This show was an amazing, fresh &amp; innovative i...</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Encouraged by the positive comments about this...</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>If you like original gut wrenching laughter yo...</td>
+      <td>positive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;A wonderful little production. &lt;br /&gt;&lt;br /&gt;The filming technique is very unassuming- very old-time-BBC fashion and gives a comforting, and sometimes discomforting, sense of realism to the entire piece. &lt;br /&gt;&lt;br /&gt;The actors are extremely well chosen- Michael Sheen not only &#34;has got all the polari&#34; but he has all the voices down pat too! You can truly see the seamless editing guided by the references to Williams\&#39; diary entries, not only is it well worth the watching but it is a terrificly written and performed piece. A masterful production about one of the great master\&#39;s of comedy and his life. &lt;br /&gt;&lt;br /&gt;The realism really comes home with the little things: the fantasy of the guard which, rather than use the traditional \&#39;dream\&#39; techniques remains solid then disappears. It plays on our knowledge and our senses, particularly with the scenes concerning Orton and Halliwell and the sets (particularly of their flat with Halliwell\&#39;s murals decorating every surface) are terribly well done.&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Clean-Data">Clean Data<a class="anchor-link" href="#Clean-Data"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0        one of the other reviewers has mentioned that ...
+1        a wonderful little production. &lt;br /&gt;&lt;br /&gt;the...
+2        i thought this was a wonderful way to spend ti...
+3        basically there&#39;s a family where a little boy ...
+4        petter mattei&#39;s &#34;love in the time of money&#34; is...
+                               ...                        
+49995    i thought this movie did a down right good job...
+49996    bad plot, bad dialogue, bad acting, idiotic di...
+49997    i am a catholic taught in parochial elementary...
+49998    i&#39;m going to have to disagree with the previou...
+49999    no one expects the star trek movies to be high...
+Name: review, Length: 50000, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_punctuation</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;@&#39;</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="s1">&#39;(&#39;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_punctuation</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;br /&gt;&lt;br /&gt;&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;a wonderful little production  the filming technique is very unassuming very oldtimebbc fashion and gives a comforting and sometimes discomforting sense of realism to the entire piece  the actors are extremely well chosen michael sheen not only has got all the polari but he has all the voices down pat too you can truly see the seamless editing guided by the references to williams diary entries not only is it well worth the watching but it is a terrificly written and performed piece a masterful production about one of the great masters of comedy and his life  the realism really comes home with the little things the fantasy of the guard which rather than use the traditional dream techniques remains solid then disappears it plays on our knowledge and our senses particularly with the scenes concerning orton and halliwell and the sets particularly of their flat with halliwells murals decorating every surface are terribly well done&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Remove-Stopwords">Remove Stopwords<a class="anchor-link" href="#Remove-Stopwords"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">stopwords</span> <span class="o">=</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add some extra stopwords</span>
+<span class="n">stopwords</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;well&#39;</span><span class="p">,</span> <span class="s1">&#39;use&#39;</span><span class="p">])</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package stopwords to
+[nltk_data]     /Users/samtreacy/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stopwords</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;i&#39;, &#39;me&#39;, &#39;my&#39;, &#39;myself&#39;, &#39;we&#39;, &#39;our&#39;, &#39;ours&#39;, &#39;ourselves&#39;, &#39;you&#39;, &#34;you&#39;re&#34;, &#34;you&#39;ve&#34;, &#34;you&#39;ll&#34;, &#34;you&#39;d&#34;, &#39;your&#39;, &#39;yours&#39;, &#39;yourself&#39;, &#39;yourselves&#39;, &#39;he&#39;, &#39;him&#39;, &#39;his&#39;, &#39;himself&#39;, &#39;she&#39;, &#34;she&#39;s&#34;, &#39;her&#39;, &#39;hers&#39;, &#39;herself&#39;, &#39;it&#39;, &#34;it&#39;s&#34;, &#39;its&#39;, &#39;itself&#39;, &#39;they&#39;, &#39;them&#39;, &#39;their&#39;, &#39;theirs&#39;, &#39;themselves&#39;, &#39;what&#39;, &#39;which&#39;, &#39;who&#39;, &#39;whom&#39;, &#39;this&#39;, &#39;that&#39;, &#34;that&#39;ll&#34;, &#39;these&#39;, &#39;those&#39;, &#39;am&#39;, &#39;is&#39;, &#39;are&#39;, &#39;was&#39;, &#39;were&#39;, &#39;be&#39;, &#39;been&#39;, &#39;being&#39;, &#39;have&#39;, &#39;has&#39;, &#39;had&#39;, &#39;having&#39;, &#39;do&#39;, &#39;does&#39;, &#39;did&#39;, &#39;doing&#39;, &#39;a&#39;, &#39;an&#39;, &#39;the&#39;, &#39;and&#39;, &#39;but&#39;, &#39;if&#39;, &#39;or&#39;, &#39;because&#39;, &#39;as&#39;, &#39;until&#39;, &#39;while&#39;, &#39;of&#39;, &#39;at&#39;, &#39;by&#39;, &#39;for&#39;, &#39;with&#39;, &#39;about&#39;, &#39;against&#39;, &#39;between&#39;, &#39;into&#39;, &#39;through&#39;, &#39;during&#39;, &#39;before&#39;, &#39;after&#39;, &#39;above&#39;, &#39;below&#39;, &#39;to&#39;, &#39;from&#39;, &#39;up&#39;, &#39;down&#39;, &#39;in&#39;, &#39;out&#39;, &#39;on&#39;, &#39;off&#39;, &#39;over&#39;, &#39;under&#39;, &#39;again&#39;, &#39;further&#39;, &#39;then&#39;, &#39;once&#39;, &#39;here&#39;, &#39;there&#39;, &#39;when&#39;, &#39;where&#39;, &#39;why&#39;, &#39;how&#39;, &#39;all&#39;, &#39;any&#39;, &#39;both&#39;, &#39;each&#39;, &#39;few&#39;, &#39;more&#39;, &#39;most&#39;, &#39;other&#39;, &#39;some&#39;, &#39;such&#39;, &#39;no&#39;, &#39;nor&#39;, &#39;not&#39;, &#39;only&#39;, &#39;own&#39;, &#39;same&#39;, &#39;so&#39;, &#39;than&#39;, &#39;too&#39;, &#39;very&#39;, &#39;s&#39;, &#39;t&#39;, &#39;can&#39;, &#39;will&#39;, &#39;just&#39;, &#39;don&#39;, &#34;don&#39;t&#34;, &#39;should&#39;, &#34;should&#39;ve&#34;, &#39;now&#39;, &#39;d&#39;, &#39;ll&#39;, &#39;m&#39;, &#39;o&#39;, &#39;re&#39;, &#39;ve&#39;, &#39;y&#39;, &#39;ain&#39;, &#39;aren&#39;, &#34;aren&#39;t&#34;, &#39;couldn&#39;, &#34;couldn&#39;t&#34;, &#39;didn&#39;, &#34;didn&#39;t&#34;, &#39;doesn&#39;, &#34;doesn&#39;t&#34;, &#39;hadn&#39;, &#34;hadn&#39;t&#34;, &#39;hasn&#39;, &#34;hasn&#39;t&#34;, &#39;haven&#39;, &#34;haven&#39;t&#34;, &#39;isn&#39;, &#34;isn&#39;t&#34;, &#39;ma&#39;, &#39;mightn&#39;, &#34;mightn&#39;t&#34;, &#39;mustn&#39;, &#34;mustn&#39;t&#34;, &#39;needn&#39;, &#34;needn&#39;t&#34;, &#39;shan&#39;, &#34;shan&#39;t&#34;, &#39;shouldn&#39;, &#34;shouldn&#39;t&#34;, &#39;wasn&#39;, &#34;wasn&#39;t&#34;, &#39;weren&#39;, &#34;weren&#39;t&#34;, &#39;won&#39;, &#34;won&#39;t&#34;, &#39;wouldn&#39;, &#34;wouldn&#39;t&#34;, &#39;well&#39;, &#39;use&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;wonderful little production  filming technique unassuming oldtimebbc fashion gives comforting sometimes discomforting sense realism entire piece  actors extremely chosen michael sheen got polari voices pat truly see seamless editing guided references williams diary entries worth watching terrificly written performed piece masterful production one great masters comedy life  realism really comes home little things fantasy guard rather traditional dream techniques remains solid disappears plays knowledge senses particularly scenes concerning orton halliwell sets particularly flat halliwells murals decorating every surface terribly done&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Stem-words">Stem words<a class="anchor-link" href="#Stem-words"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.stem.porter</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+
+<span class="n">porter_stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">porter_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s1">&#39;programers&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;program&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stem_words</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">split_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">split_text</span><span class="p">:</span>
+        <span class="n">stemmedword</span> <span class="o">=</span> <span class="n">porter_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="n">combined</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stemmedword</span><span class="p">)</span>
+        
+    <span class="n">combined</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">combined</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stem_words</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;success die hard sequel surpris realli 1990 glut die hard movi cash wrong guy wrong place wrong time concept cliffhang die hard mountain time rescu sli stop mom shoot stallon career cliffhang one big nitpick dream especi expert mountain climb basejump aviat facial express act skill full excus dismiss film one overblown pile junk stallon even manag get outact hors howev forget nonsens actual lovabl undeni entertain romp deliv plenti thrill unintent plenti laugh youv got love john lithgow sneeri evil tick everi box band baddi best perman harass hapless turncoat agent rex linn traver may henri portrait serial killer michael rooker noteworthi cringeworthi perform hal insist constantli shriek pain disbelief captor man never hurt anybodi whilst sure cant realli look like ralph wait frank charact grin girl plummet death mention must go former london burn actor craig fairbrass brit bad guy come cropper whilst use hal human footbal ye cant help enjoy bit hal need good kick forget better judgement care could never happen lower act expect turn volum enjoy your look qaulen he one wear helicopt&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Define-Target-and-Features">Define Target and Features<a class="anchor-link" href="#Define-Target-and-Features"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>((40000,), (40000,), (10000,), (10000,))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vectorise-using-TF-IDF">Vectorise using TF-IDF<a class="anchor-link" href="#Vectorise-using-TF-IDF"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="n">vectorize</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">vectorize</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">vectorize</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Import-ML-modules">Import ML modules<a class="anchor-link" href="#Import-ML-modules"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Evaluate-Baseline">Evaluate Baseline<a class="anchor-link" href="#Evaluate-Baseline"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DummyClassifier(strategy=&#39;uniform&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              precision    recall  f1-score   support
+
+    negative       0.50      0.50      0.50      4961
+    positive       0.50      0.50      0.50      5039
+
+    accuracy                           0.50     10000
+   macro avg       0.50      0.50      0.50     10000
+weighted avg       0.50      0.50      0.50     10000
+ 
+
+[[2474 2487]
+ [2516 2523]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              precision    recall  f1-score   support
+
+    negative       0.90      0.87      0.89      4961
+    positive       0.88      0.91      0.89      5039
+
+    accuracy                           0.89     10000
+   macro avg       0.89      0.89      0.89     10000
+weighted avg       0.89      0.89      0.89     10000
+ 
+
+[[4324  637]
+ [ 478 4561]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Grid-Search">Grid Search<a class="anchor-link" href="#Grid-Search"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;C&#39;: 1.0,
+ &#39;class_weight&#39;: None,
+ &#39;dual&#39;: False,
+ &#39;fit_intercept&#39;: True,
+ &#39;intercept_scaling&#39;: 1,
+ &#39;l1_ratio&#39;: None,
+ &#39;max_iter&#39;: 100,
+ &#39;multi_class&#39;: &#39;auto&#39;,
+ &#39;n_jobs&#39;: None,
+ &#39;penalty&#39;: &#39;l2&#39;,
+ &#39;random_state&#39;: None,
+ &#39;solver&#39;: &#39;lbfgs&#39;,
+ &#39;tol&#39;: 0.0001,
+ &#39;verbose&#39;: 0,
+ &#39;warm_start&#39;: False}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;penalty&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span><span class="s1">&#39;l2&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;solver&#39;</span><span class="p">:[</span><span class="s1">&#39;newton-cg&#39;</span> <span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="s1">&#39;sag&#39;</span><span class="p">,</span> <span class="s1">&#39;saga&#39;</span><span class="p">]}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">refit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Fitting 5 folds for each of 8 candidates, totalling 40 fits
+[CV] penalty=l1, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l1, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l1, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l1, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l1, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l1, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l1, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l1, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l1, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l1, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l1, solver=liblinear ....................................
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
+[Parallel(n_jobs=1)]: Done   1 out of   1 | elapsed:    0.0s remaining:    0.0s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[CV] ..................... penalty=l1, solver=liblinear, total=   0.8s
+[CV] penalty=l1, solver=liblinear ....................................
+[CV] ..................... penalty=l1, solver=liblinear, total=   1.0s
+[CV] penalty=l1, solver=liblinear ....................................
+[CV] ..................... penalty=l1, solver=liblinear, total=   0.9s
+[CV] penalty=l1, solver=liblinear ....................................
+[CV] ..................... penalty=l1, solver=liblinear, total=   0.9s
+[CV] penalty=l1, solver=liblinear ....................................
+[CV] ..................... penalty=l1, solver=liblinear, total=   0.9s
+[CV] penalty=l1, solver=sag ..........................................
+[CV] ........................... penalty=l1, solver=sag, total=   0.0s
+[CV] penalty=l1, solver=sag ..........................................
+[CV] ........................... penalty=l1, solver=sag, total=   0.0s
+[CV] penalty=l1, solver=sag ..........................................
+[CV] ........................... penalty=l1, solver=sag, total=   0.0s
+[CV] penalty=l1, solver=sag ..........................................
+[CV] ........................... penalty=l1, solver=sag, total=   0.0s
+[CV] penalty=l1, solver=sag ..........................................
+[CV] ........................... penalty=l1, solver=sag, total=   0.0s
+[CV] penalty=l1, solver=saga .........................................
+[CV] .......................... penalty=l1, solver=saga, total=  13.9s
+[CV] penalty=l1, solver=saga .........................................
+[CV] .......................... penalty=l1, solver=saga, total=  11.1s
+[CV] penalty=l1, solver=saga .........................................
+[CV] .......................... penalty=l1, solver=saga, total=  11.4s
+[CV] penalty=l1, solver=saga .........................................
+[CV] .......................... penalty=l1, solver=saga, total=  13.1s
+[CV] penalty=l1, solver=saga .........................................
+[CV] .......................... penalty=l1, solver=saga, total=  11.4s
+[CV] penalty=l2, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l2, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l2, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l2, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l2, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l2, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l2, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l2, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l2, solver=newton-cglbfgs ...............................
+[CV] ................ penalty=l2, solver=newton-cglbfgs, total=   0.0s
+[CV] penalty=l2, solver=liblinear ....................................
+[CV] ..................... penalty=l2, solver=liblinear, total=   1.0s
+[CV] penalty=l2, solver=liblinear ....................................
+[CV] ..................... penalty=l2, solver=liblinear, total=   1.1s
+[CV] penalty=l2, solver=liblinear ....................................
+[CV] ..................... penalty=l2, solver=liblinear, total=   1.1s
+[CV] penalty=l2, solver=liblinear ....................................
+[CV] ..................... penalty=l2, solver=liblinear, total=   1.4s
+[CV] penalty=l2, solver=liblinear ....................................
+[CV] ..................... penalty=l2, solver=liblinear, total=   1.0s
+[CV] penalty=l2, solver=sag ..........................................
+[CV] ........................... penalty=l2, solver=sag, total=   1.2s
+[CV] penalty=l2, solver=sag ..........................................
+[CV] ........................... penalty=l2, solver=sag, total=   1.2s
+[CV] penalty=l2, solver=sag ..........................................
+[CV] ........................... penalty=l2, solver=sag, total=   1.6s
+[CV] penalty=l2, solver=sag ..........................................
+[CV] ........................... penalty=l2, solver=sag, total=   1.4s
+[CV] penalty=l2, solver=sag ..........................................
+[CV] ........................... penalty=l2, solver=sag, total=   1.5s
+[CV] penalty=l2, solver=saga .........................................
+[CV] .......................... penalty=l2, solver=saga, total=   1.4s
+[CV] penalty=l2, solver=saga .........................................
+[CV] .......................... penalty=l2, solver=saga, total=   1.6s
+[CV] penalty=l2, solver=saga .........................................
+[CV] .......................... penalty=l2, solver=saga, total=   1.8s
+[CV] penalty=l2, solver=saga .........................................
+[CV] .......................... penalty=l2, solver=saga, total=   1.8s
+[CV] penalty=l2, solver=saga .........................................
+[CV] .......................... penalty=l2, solver=saga, total=   1.4s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Done  40 out of  40 | elapsed:  1.4min finished
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>GridSearchCV(estimator=LogisticRegression(),
+             param_grid={&#39;penalty&#39;: [&#39;l1&#39;, &#39;l2&#39;],
+                         &#39;solver&#39;: [&#39;newton-cglbfgs&#39;, &#39;liblinear&#39;, &#39;sag&#39;,
+                                    &#39;saga&#39;]},
+             verbose=2)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              precision    recall  f1-score   support
+
+    negative       0.90      0.87      0.89      4961
+    positive       0.88      0.91      0.89      5039
+
+    accuracy                           0.89     10000
+   macro avg       0.89      0.89      0.89     10000
+weighted avg       0.89      0.89      0.89     10000
+ 
+
+[[4324  637]
+ [ 478 4561]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;penalty&#39;: &#39;l2&#39;, &#39;solver&#39;: &#39;liblinear&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><a class="u-url" href="/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/DataScience/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/DataScience/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/DataScience/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A place to maintain Data Science and Machine learning projects</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/DataScience/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
