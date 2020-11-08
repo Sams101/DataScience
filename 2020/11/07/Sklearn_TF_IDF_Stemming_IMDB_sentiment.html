@@ -3,9 +3,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews | DS Unplugged</title>
+<title>Deep learning: A tutorial | DS Unplugged</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews" />
+<meta property="og:title" content="Deep learning: A tutorial" />
+<meta name="author" content="Sam Treacy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
@@ -15,12 +16,13 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-11-07T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews","dateModified":"2020-11-07T00:00:00-06:00","datePublished":"2020-11-07T00:00:00-06:00","url":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Deep learning: A tutorial","dateModified":"2020-11-07T00:00:00-06:00","datePublished":"2020-11-07T00:00:00-06:00","url":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/DataScience/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://sams101.github.io/DataScience/feed.xml" title="DS Unplugged" /><link rel="shortcut icon" type="image/x-icon" href="/DataScience/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews | DS Unplugged</title>
+<title>Deep learning: A tutorial | DS Unplugged</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews" />
+<meta property="og:title" content="Deep learning: A tutorial" />
+<meta name="author" content="Sam Treacy" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A place to maintain Data Science and Machine learning projects" />
 <meta property="og:description" content="A place to maintain Data Science and Machine learning projects" />
@@ -30,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-11-07T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews","dateModified":"2020-11-07T00:00:00-06:00","datePublished":"2020-11-07T00:00:00-06:00","url":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Sam Treacy"},"description":"A place to maintain Data Science and Machine learning projects","@type":"BlogPosting","headline":"Deep learning: A tutorial","dateModified":"2020-11-07T00:00:00-06:00","datePublished":"2020-11-07T00:00:00-06:00","url":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sams101.github.io/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -85,9 +87,11 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-07T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Deep learning: A tutorial</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-07T00:00:00-06:00" itemprop="datePublished">
         Nov 7, 2020
-      </time>
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Sam Treacy</span></span>
        • <span class="read-time" title="Estimated read time">
     
     
@@ -98,31 +102,19 @@ window.onload = wrap_img;
     
 
     
-      
-        <div class="pb-5 d-flex flex-wrap flex-justify-end">
-          <div class="px-2">
-
-    <a href="https://github.com/Sams101/DataScience/tree/master/_notebooks/2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb" role="button" target="_blank">
-<img class="notebook-badge-image" src="/DataScience/assets/badges/github.svg" alt="View On GitHub">
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/Sams101/DataScience/master?filepath=_notebooks%2F2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/DataScience/assets/badges/binder.svg" alt="Open In Binder"/>
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://colab.research.google.com/github/Sams101/DataScience/blob/master/_notebooks/2020-11-07-Sklearn_TF_IDF_Stemming_IMDB_sentiment.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/DataScience/assets/badges/colab.svg" alt="Open In Colab"/>
-    </a>
-</div>
-        </div>
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Clean-Data">Clean Data </a></li>
+<li class="toc-entry toc-h2"><a href="#Remove-Stopwords">Remove Stopwords </a></li>
+<li class="toc-entry toc-h2"><a href="#Stem-words">Stem words </a></li>
+<li class="toc-entry toc-h2"><a href="#Define-Target-and-Features">Define Target and Features </a></li>
+<li class="toc-entry toc-h2"><a href="#Vectorise-using-TF-IDF">Vectorise using TF-IDF </a></li>
+<li class="toc-entry toc-h2"><a href="#Import-ML-modules">Import ML modules </a></li>
+<li class="toc-entry toc-h2"><a href="#Evaluate-Baseline">Evaluate Baseline </a></li>
+<li class="toc-entry toc-h2"><a href="#Grid-Search">Grid Search </a></li>
+</ul><!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -145,11 +137,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">-</span> <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;Deep learning: A tutorial&quot;</span>
-<span class="o">-</span> <span class="n">toc</span><span class="p">:</span> <span class="n">true</span>
-<span class="o">-</span> <span class="n">badges</span><span class="p">:</span> <span class="kc">False</span>
-<span class="o">-</span> <span class="n">comments</span><span class="p">:</span> <span class="n">true</span>
-<span class="o">-</span> <span class="n">author</span><span class="p">:</span> <span class="n">Sam</span> <span class="n">Treacy</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Sklearn NLP TF-IDF Sentiment Stemming GridSearch - IMDB Reviews</span>
 </pre></div>
 
     </div>
@@ -173,7 +161,7 @@ window.onload = wrap_img;
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -190,7 +178,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;DATA/IMDB Dataset.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'DATA/IMDB Dataset.csv'</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
@@ -331,7 +319,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -346,7 +334,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;A wonderful little production. &lt;br /&gt;&lt;br /&gt;The filming technique is very unassuming- very old-time-BBC fashion and gives a comforting, and sometimes discomforting, sense of realism to the entire piece. &lt;br /&gt;&lt;br /&gt;The actors are extremely well chosen- Michael Sheen not only &#34;has got all the polari&#34; but he has all the voices down pat too! You can truly see the seamless editing guided by the references to Williams\&#39; diary entries, not only is it well worth the watching but it is a terrificly written and performed piece. A masterful production about one of the great master\&#39;s of comedy and his life. &lt;br /&gt;&lt;br /&gt;The realism really comes home with the little things: the fantasy of the guard which, rather than use the traditional \&#39;dream\&#39; techniques remains solid then disappears. It plays on our knowledge and our senses, particularly with the scenes concerning Orton and Halliwell and the sets (particularly of their flat with Halliwell\&#39;s murals decorating every surface) are terribly well done.&#39;</pre>
+<pre>'A wonderful little production. &lt;br /&gt;&lt;br /&gt;The filming technique is very unassuming- very old-time-BBC fashion and gives a comforting, and sometimes discomforting, sense of realism to the entire piece. &lt;br /&gt;&lt;br /&gt;The actors are extremely well chosen- Michael Sheen not only "has got all the polari" but he has all the voices down pat too! You can truly see the seamless editing guided by the references to Williams\' diary entries, not only is it well worth the watching but it is a terrificly written and performed piece. A masterful production about one of the great master\'s of comedy and his life. &lt;br /&gt;&lt;br /&gt;The realism really comes home with the little things: the fantasy of the guard which, rather than use the traditional \'dream\' techniques remains solid then disappears. It plays on our knowledge and our senses, particularly with the scenes concerning Orton and Halliwell and the sets (particularly of their flat with Halliwell\'s murals decorating every surface) are terribly well done.'</pre>
 </div>
 
 </div>
@@ -357,9 +345,12 @@ window.onload = wrap_img;
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Clean-Data">Clean Data<a class="anchor-link" href="#Clean-Data"> </a></h2>
+<h2 id="Clean-Data">
+<a class="anchor" href="#Clean-Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clean Data<a class="anchor-link" href="#Clean-Data"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -370,8 +361,8 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -389,13 +380,13 @@ window.onload = wrap_img;
 <pre>0        one of the other reviewers has mentioned that ...
 1        a wonderful little production. &lt;br /&gt;&lt;br /&gt;the...
 2        i thought this was a wonderful way to spend ti...
-3        basically there&#39;s a family where a little boy ...
-4        petter mattei&#39;s &#34;love in the time of money&#34; is...
+3        basically there's a family where a little boy ...
+4        petter mattei's "love in the time of money" is...
                                ...                        
 49995    i thought this movie did a down right good job...
 49996    bad plot, bad dialogue, bad acting, idiotic di...
 49997    i am a catholic taught in parochial elementary...
-49998    i&#39;m going to have to disagree with the previou...
+49998    i'm going to have to disagree with the previou...
 49999    no one expects the star trek movies to be high...
 Name: review, Length: 50000, dtype: object</pre>
 </div>
@@ -416,8 +407,8 @@ Name: review, Length: 50000, dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_punctuation</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
-                                                            <span class="s1">&#39;@&#39;</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="s1">&#39;(&#39;</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">'?'</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span><span class="s1">'_'</span><span class="p">,</span><span class="s1">'.'</span><span class="p">,</span>
+                                                            <span class="s1">'@'</span><span class="p">,</span><span class="s1">'#'</span><span class="p">,</span><span class="s1">':'</span><span class="p">,</span><span class="s1">';'</span><span class="p">,</span><span class="s1">'"'</span><span class="p">,</span><span class="s1">','</span><span class="p">,</span><span class="s2">"'"</span><span class="p">,</span><span class="s1">')'</span><span class="p">,</span><span class="s1">'('</span><span class="p">)</span> <span class="p">)</span>
     <span class="k">return</span> <span class="n">cleaned</span>
 </pre></div>
 
@@ -435,7 +426,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_punctuation</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_punctuation</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -452,8 +443,8 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;br /&gt;&lt;br /&gt;&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&lt;br /&gt;&lt;br /&gt;'</span><span class="p">,</span><span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'&lt;br&gt;'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -468,7 +459,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;a wonderful little production  the filming technique is very unassuming very oldtimebbc fashion and gives a comforting and sometimes discomforting sense of realism to the entire piece  the actors are extremely well chosen michael sheen not only has got all the polari but he has all the voices down pat too you can truly see the seamless editing guided by the references to williams diary entries not only is it well worth the watching but it is a terrificly written and performed piece a masterful production about one of the great masters of comedy and his life  the realism really comes home with the little things the fantasy of the guard which rather than use the traditional dream techniques remains solid then disappears it plays on our knowledge and our senses particularly with the scenes concerning orton and halliwell and the sets particularly of their flat with halliwells murals decorating every surface are terribly well done&#39;</pre>
+<pre>'a wonderful little production  the filming technique is very unassuming very oldtimebbc fashion and gives a comforting and sometimes discomforting sense of realism to the entire piece  the actors are extremely well chosen michael sheen not only has got all the polari but he has all the voices down pat too you can truly see the seamless editing guided by the references to williams diary entries not only is it well worth the watching but it is a terrificly written and performed piece a masterful production about one of the great masters of comedy and his life  the realism really comes home with the little things the fantasy of the guard which rather than use the traditional dream techniques remains solid then disappears it plays on our knowledge and our senses particularly with the scenes concerning orton and halliwell and the sets particularly of their flat with halliwells murals decorating every surface are terribly well done'</pre>
 </div>
 
 </div>
@@ -479,9 +470,12 @@ Name: review, Length: 50000, dtype: object</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Remove-Stopwords">Remove Stopwords<a class="anchor-link" href="#Remove-Stopwords"> </a></h2>
+<h2 id="Remove-Stopwords">
+<a class="anchor" href="#Remove-Stopwords" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remove Stopwords<a class="anchor-link" href="#Remove-Stopwords"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -493,11 +487,11 @@ Name: review, Length: 50000, dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
-<span class="n">stopwords</span> <span class="o">=</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'stopwords'</span><span class="p">)</span>
+<span class="n">stopwords</span> <span class="o">=</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">'english'</span><span class="p">)</span>
 
 <span class="c1"># Add some extra stopwords</span>
-<span class="n">stopwords</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;well&#39;</span><span class="p">,</span> <span class="s1">&#39;use&#39;</span><span class="p">])</span> 
+<span class="n">stopwords</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">'well'</span><span class="p">,</span> <span class="s1">'use'</span><span class="p">])</span> 
 </pre></div>
 
     </div>
@@ -543,7 +537,7 @@ Name: review, Length: 50000, dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;i&#39;, &#39;me&#39;, &#39;my&#39;, &#39;myself&#39;, &#39;we&#39;, &#39;our&#39;, &#39;ours&#39;, &#39;ourselves&#39;, &#39;you&#39;, &#34;you&#39;re&#34;, &#34;you&#39;ve&#34;, &#34;you&#39;ll&#34;, &#34;you&#39;d&#34;, &#39;your&#39;, &#39;yours&#39;, &#39;yourself&#39;, &#39;yourselves&#39;, &#39;he&#39;, &#39;him&#39;, &#39;his&#39;, &#39;himself&#39;, &#39;she&#39;, &#34;she&#39;s&#34;, &#39;her&#39;, &#39;hers&#39;, &#39;herself&#39;, &#39;it&#39;, &#34;it&#39;s&#34;, &#39;its&#39;, &#39;itself&#39;, &#39;they&#39;, &#39;them&#39;, &#39;their&#39;, &#39;theirs&#39;, &#39;themselves&#39;, &#39;what&#39;, &#39;which&#39;, &#39;who&#39;, &#39;whom&#39;, &#39;this&#39;, &#39;that&#39;, &#34;that&#39;ll&#34;, &#39;these&#39;, &#39;those&#39;, &#39;am&#39;, &#39;is&#39;, &#39;are&#39;, &#39;was&#39;, &#39;were&#39;, &#39;be&#39;, &#39;been&#39;, &#39;being&#39;, &#39;have&#39;, &#39;has&#39;, &#39;had&#39;, &#39;having&#39;, &#39;do&#39;, &#39;does&#39;, &#39;did&#39;, &#39;doing&#39;, &#39;a&#39;, &#39;an&#39;, &#39;the&#39;, &#39;and&#39;, &#39;but&#39;, &#39;if&#39;, &#39;or&#39;, &#39;because&#39;, &#39;as&#39;, &#39;until&#39;, &#39;while&#39;, &#39;of&#39;, &#39;at&#39;, &#39;by&#39;, &#39;for&#39;, &#39;with&#39;, &#39;about&#39;, &#39;against&#39;, &#39;between&#39;, &#39;into&#39;, &#39;through&#39;, &#39;during&#39;, &#39;before&#39;, &#39;after&#39;, &#39;above&#39;, &#39;below&#39;, &#39;to&#39;, &#39;from&#39;, &#39;up&#39;, &#39;down&#39;, &#39;in&#39;, &#39;out&#39;, &#39;on&#39;, &#39;off&#39;, &#39;over&#39;, &#39;under&#39;, &#39;again&#39;, &#39;further&#39;, &#39;then&#39;, &#39;once&#39;, &#39;here&#39;, &#39;there&#39;, &#39;when&#39;, &#39;where&#39;, &#39;why&#39;, &#39;how&#39;, &#39;all&#39;, &#39;any&#39;, &#39;both&#39;, &#39;each&#39;, &#39;few&#39;, &#39;more&#39;, &#39;most&#39;, &#39;other&#39;, &#39;some&#39;, &#39;such&#39;, &#39;no&#39;, &#39;nor&#39;, &#39;not&#39;, &#39;only&#39;, &#39;own&#39;, &#39;same&#39;, &#39;so&#39;, &#39;than&#39;, &#39;too&#39;, &#39;very&#39;, &#39;s&#39;, &#39;t&#39;, &#39;can&#39;, &#39;will&#39;, &#39;just&#39;, &#39;don&#39;, &#34;don&#39;t&#34;, &#39;should&#39;, &#34;should&#39;ve&#34;, &#39;now&#39;, &#39;d&#39;, &#39;ll&#39;, &#39;m&#39;, &#39;o&#39;, &#39;re&#39;, &#39;ve&#39;, &#39;y&#39;, &#39;ain&#39;, &#39;aren&#39;, &#34;aren&#39;t&#34;, &#39;couldn&#39;, &#34;couldn&#39;t&#34;, &#39;didn&#39;, &#34;didn&#39;t&#34;, &#39;doesn&#39;, &#34;doesn&#39;t&#34;, &#39;hadn&#39;, &#34;hadn&#39;t&#34;, &#39;hasn&#39;, &#34;hasn&#39;t&#34;, &#39;haven&#39;, &#34;haven&#39;t&#34;, &#39;isn&#39;, &#34;isn&#39;t&#34;, &#39;ma&#39;, &#39;mightn&#39;, &#34;mightn&#39;t&#34;, &#39;mustn&#39;, &#34;mustn&#39;t&#34;, &#39;needn&#39;, &#34;needn&#39;t&#34;, &#39;shan&#39;, &#34;shan&#39;t&#34;, &#39;shouldn&#39;, &#34;shouldn&#39;t&#34;, &#39;wasn&#39;, &#34;wasn&#39;t&#34;, &#39;weren&#39;, &#34;weren&#39;t&#34;, &#39;won&#39;, &#34;won&#39;t&#34;, &#39;wouldn&#39;, &#34;wouldn&#39;t&#34;, &#39;well&#39;, &#39;use&#39;]
+<pre>['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', "don't", 'should', "should've", 'now', 'd', 'll', 'm', 'o', 're', 've', 'y', 'ain', 'aren', "aren't", 'couldn', "couldn't", 'didn', "didn't", 'doesn', "doesn't", 'hadn', "hadn't", 'hasn', "hasn't", 'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't", 'well', 'use']
 </pre>
 </div>
 </div>
@@ -562,7 +556,7 @@ Name: review, Length: 50000, dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">)</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span> <span class="k">if</span> <span class="n">char</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cleaned</span>
 </pre></div>
 
@@ -580,8 +574,8 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_stopwords</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -596,7 +590,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;wonderful little production  filming technique unassuming oldtimebbc fashion gives comforting sometimes discomforting sense realism entire piece  actors extremely chosen michael sheen got polari voices pat truly see seamless editing guided references williams diary entries worth watching terrificly written performed piece masterful production one great masters comedy life  realism really comes home little things fantasy guard rather traditional dream techniques remains solid disappears plays knowledge senses particularly scenes concerning orton halliwell sets particularly flat halliwells murals decorating every surface terribly done&#39;</pre>
+<pre>'wonderful little production  filming technique unassuming oldtimebbc fashion gives comforting sometimes discomforting sense realism entire piece  actors extremely chosen michael sheen got polari voices pat truly see seamless editing guided references williams diary entries worth watching terrificly written performed piece masterful production one great masters comedy life  realism really comes home little things fantasy guard rather traditional dream techniques remains solid disappears plays knowledge senses particularly scenes concerning orton halliwell sets particularly flat halliwells murals decorating every surface terribly done'</pre>
 </div>
 
 </div>
@@ -607,9 +601,12 @@ Name: review, Length: 50000, dtype: object</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stem-words">Stem words<a class="anchor-link" href="#Stem-words"> </a></h2>
+<h2 id="Stem-words">
+<a class="anchor" href="#Stem-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stem words<a class="anchor-link" href="#Stem-words"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -639,7 +636,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">porter_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s1">&#39;programers&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">porter_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s1">'programers'</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -654,7 +651,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;program&#39;</pre>
+<pre>'program'</pre>
 </div>
 
 </div>
@@ -679,7 +676,7 @@ Name: review, Length: 50000, dtype: object</pre>
         <span class="n">stemmedword</span> <span class="o">=</span> <span class="n">porter_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
         <span class="n">combined</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stemmedword</span><span class="p">)</span>
         
-    <span class="n">combined</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">combined</span>
 </pre></div>
 
@@ -697,7 +694,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stem_words</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">stem_words</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -714,7 +711,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">][</span><span class="mi">20</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">][</span><span class="mi">20</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -729,7 +726,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;success die hard sequel surpris realli 1990 glut die hard movi cash wrong guy wrong place wrong time concept cliffhang die hard mountain time rescu sli stop mom shoot stallon career cliffhang one big nitpick dream especi expert mountain climb basejump aviat facial express act skill full excus dismiss film one overblown pile junk stallon even manag get outact hors howev forget nonsens actual lovabl undeni entertain romp deliv plenti thrill unintent plenti laugh youv got love john lithgow sneeri evil tick everi box band baddi best perman harass hapless turncoat agent rex linn traver may henri portrait serial killer michael rooker noteworthi cringeworthi perform hal insist constantli shriek pain disbelief captor man never hurt anybodi whilst sure cant realli look like ralph wait frank charact grin girl plummet death mention must go former london burn actor craig fairbrass brit bad guy come cropper whilst use hal human footbal ye cant help enjoy bit hal need good kick forget better judgement care could never happen lower act expect turn volum enjoy your look qaulen he one wear helicopt&#39;</pre>
+<pre>'success die hard sequel surpris realli 1990 glut die hard movi cash wrong guy wrong place wrong time concept cliffhang die hard mountain time rescu sli stop mom shoot stallon career cliffhang one big nitpick dream especi expert mountain climb basejump aviat facial express act skill full excus dismiss film one overblown pile junk stallon even manag get outact hors howev forget nonsens actual lovabl undeni entertain romp deliv plenti thrill unintent plenti laugh youv got love john lithgow sneeri evil tick everi box band baddi best perman harass hapless turncoat agent rex linn traver may henri portrait serial killer michael rooker noteworthi cringeworthi perform hal insist constantli shriek pain disbelief captor man never hurt anybodi whilst sure cant realli look like ralph wait frank charact grin girl plummet death mention must go former london burn actor craig fairbrass brit bad guy come cropper whilst use hal human footbal ye cant help enjoy bit hal need good kick forget better judgement care could never happen lower act expect turn volum enjoy your look qaulen he one wear helicopt'</pre>
 </div>
 
 </div>
@@ -740,9 +737,12 @@ Name: review, Length: 50000, dtype: object</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Define-Target-and-Features">Define Target and Features<a class="anchor-link" href="#Define-Target-and-Features"> </a></h2>
+<h2 id="Define-Target-and-Features">
+<a class="anchor" href="#Define-Target-and-Features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Define Target and Features<a class="anchor-link" href="#Define-Target-and-Features"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -753,9 +753,9 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'sentiment'</span><span class="p">]</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'review'</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -802,9 +802,12 @@ Name: review, Length: 50000, dtype: object</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Vectorise-using-TF-IDF">Vectorise using TF-IDF<a class="anchor-link" href="#Vectorise-using-TF-IDF"> </a></h2>
+<h2 id="Vectorise-using-TF-IDF">
+<a class="anchor" href="#Vectorise-using-TF-IDF" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vectorise using TF-IDF<a class="anchor-link" href="#Vectorise-using-TF-IDF"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -830,9 +833,12 @@ Name: review, Length: 50000, dtype: object</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Import-ML-modules">Import ML modules<a class="anchor-link" href="#Import-ML-modules"> </a></h2>
+<h2 id="Import-ML-modules">
+<a class="anchor" href="#Import-ML-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import ML modules<a class="anchor-link" href="#Import-ML-modules"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -861,9 +867,12 @@ Name: review, Length: 50000, dtype: object</pre>
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Evaluate-Baseline">Evaluate Baseline<a class="anchor-link" href="#Evaluate-Baseline"> </a></h2>
+<h2 id="Evaluate-Baseline">
+<a class="anchor" href="#Evaluate-Baseline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Evaluate Baseline<a class="anchor-link" href="#Evaluate-Baseline"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -874,7 +883,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">'uniform'</span><span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
@@ -891,7 +900,7 @@ Name: review, Length: 50000, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>DummyClassifier(strategy=&#39;uniform&#39;)</pre>
+<pre>DummyClassifier(strategy='uniform')</pre>
 </div>
 
 </div>
@@ -928,7 +937,7 @@ Name: review, Length: 50000, dtype: object</pre>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
 </pre></div>
 
@@ -992,7 +1001,7 @@ weighted avg       0.50      0.50      0.50     10000
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
 </pre></div>
 
@@ -1028,9 +1037,12 @@ weighted avg       0.89      0.89      0.89     10000
 </div>
     
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grid-Search">Grid Search<a class="anchor-link" href="#Grid-Search"> </a></h2>
+<h2 id="Grid-Search">
+<a class="anchor" href="#Grid-Search" aria-hidden="true"><span class="octicon octicon-link"></span></a>Grid Search<a class="anchor-link" href="#Grid-Search"> </a>
+</h2>
 </div>
 </div>
 </div>
@@ -1058,21 +1070,21 @@ weighted avg       0.89      0.89      0.89     10000
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;C&#39;: 1.0,
- &#39;class_weight&#39;: None,
- &#39;dual&#39;: False,
- &#39;fit_intercept&#39;: True,
- &#39;intercept_scaling&#39;: 1,
- &#39;l1_ratio&#39;: None,
- &#39;max_iter&#39;: 100,
- &#39;multi_class&#39;: &#39;auto&#39;,
- &#39;n_jobs&#39;: None,
- &#39;penalty&#39;: &#39;l2&#39;,
- &#39;random_state&#39;: None,
- &#39;solver&#39;: &#39;lbfgs&#39;,
- &#39;tol&#39;: 0.0001,
- &#39;verbose&#39;: 0,
- &#39;warm_start&#39;: False}</pre>
+<pre>{'C': 1.0,
+ 'class_weight': None,
+ 'dual': False,
+ 'fit_intercept': True,
+ 'intercept_scaling': 1,
+ 'l1_ratio': None,
+ 'max_iter': 100,
+ 'multi_class': 'auto',
+ 'n_jobs': None,
+ 'penalty': 'l2',
+ 'random_state': None,
+ 'solver': 'lbfgs',
+ 'tol': 0.0001,
+ 'verbose': 0,
+ 'warm_start': False}</pre>
 </div>
 
 </div>
@@ -1090,8 +1102,8 @@ weighted avg       0.89      0.89      0.89     10000
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;penalty&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span><span class="s1">&#39;l2&#39;</span><span class="p">],</span>
-              <span class="s1">&#39;solver&#39;</span><span class="p">:[</span><span class="s1">&#39;newton-cg&#39;</span> <span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="s1">&#39;sag&#39;</span><span class="p">,</span> <span class="s1">&#39;saga&#39;</span><span class="p">]}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'penalty'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'l1'</span><span class="p">,</span><span class="s1">'l2'</span><span class="p">],</span>
+              <span class="s1">'solver'</span><span class="p">:[</span><span class="s1">'newton-cg'</span> <span class="s1">'lbfgs'</span><span class="p">,</span> <span class="s1">'liblinear'</span><span class="p">,</span> <span class="s1">'sag'</span><span class="p">,</span> <span class="s1">'saga'</span><span class="p">]}</span>
 </pre></div>
 
     </div>
@@ -1253,9 +1265,9 @@ weighted avg       0.89      0.89      0.89     10000
 
 <div class="output_text output_subarea output_execute_result">
 <pre>GridSearchCV(estimator=LogisticRegression(),
-             param_grid={&#39;penalty&#39;: [&#39;l1&#39;, &#39;l2&#39;],
-                         &#39;solver&#39;: [&#39;newton-cglbfgs&#39;, &#39;liblinear&#39;, &#39;sag&#39;,
-                                    &#39;saga&#39;]},
+             param_grid={'penalty': ['l1', 'l2'],
+                         'solver': ['newton-cglbfgs', 'liblinear', 'sag',
+                                    'saga']},
              verbose=2)</pre>
 </div>
 
@@ -1291,7 +1303,7 @@ weighted avg       0.89      0.89      0.89     10000
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">),</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
 </pre></div>
 
@@ -1349,7 +1361,7 @@ weighted avg       0.89      0.89      0.89     10000
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;penalty&#39;: &#39;l2&#39;, &#39;solver&#39;: &#39;liblinear&#39;}</pre>
+<pre>{'penalty': 'l2', 'solver': 'liblinear'}</pre>
 </div>
 
 </div>
@@ -1364,7 +1376,15 @@ weighted avg       0.89      0.89      0.89     10000
 
 
 
-  </div><a class="u-url" href="/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Sams101/DataScience"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/DataScience/2020/11/07/Sklearn_TF_IDF_Stemming_IMDB_sentiment.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
